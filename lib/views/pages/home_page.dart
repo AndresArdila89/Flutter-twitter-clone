@@ -13,7 +13,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarrWidget(
-        title: ProjectLogos.twitter
+        title: ProjectLogos.twitter,
+        
       ),
       body: Center(
         child: Text(

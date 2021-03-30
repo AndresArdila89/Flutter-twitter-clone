@@ -1,0 +1,1073 @@
+define(['dart_sdk', 'packages/matcher/src/operator_matchers.dart', 'packages/matcher/src/equals_matcher.dart', 'packages/matcher/src/interfaces.dart', 'packages/test_api/src/backend/closed_exception.dart', 'packages/test_api/src/utils.dart', 'packages/test_api/src/backend/suite.dart', 'packages/test_api/src/backend/suite_platform.dart', 'packages/test_api/src/backend/metadata.dart', 'packages/stack_trace/src/stack_zone_specification.dart', 'packages/test_api/src/backend/live_test_controller.dart', 'packages/test_api/src/backend/state.dart', 'packages/test_api/src/backend/message.dart', 'packages/collection/src/union_set_controller.dart', 'packages/test_api/src/frontend/timeout.dart'], (function load__packages__test_api__src__frontend__async_matcher_dart(dart_sdk, packages__matcher__src__operator_matchers$46dart, packages__matcher__src__equals_matcher$46dart, packages__matcher__src__interfaces$46dart, packages__test_api__src__backend__closed_exception$46dart, packages__test_api__src__utils$46dart, packages__test_api__src__backend__suite$46dart, packages__test_api__src__backend__suite_platform$46dart, packages__test_api__src__backend__metadata$46dart, packages__stack_trace__src__stack_zone_specification$46dart, packages__test_api__src__backend__live_test_controller$46dart, packages__test_api__src__backend__state$46dart, packages__test_api__src__backend__message$46dart, packages__collection__src__union_set_controller$46dart, packages__test_api__src__frontend__timeout$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const _js_helper = dart_sdk._js_helper;
+  const _internal = dart_sdk._internal;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const operator_matchers = packages__matcher__src__operator_matchers$46dart.src__operator_matchers;
+  const equals_matcher = packages__matcher__src__equals_matcher$46dart.src__equals_matcher;
+  const type_matcher = packages__matcher__src__equals_matcher$46dart.src__type_matcher;
+  const description$ = packages__matcher__src__equals_matcher$46dart.src__description;
+  const util = packages__matcher__src__equals_matcher$46dart.src__util;
+  const interfaces = packages__matcher__src__interfaces$46dart.src__interfaces;
+  const closed_exception = packages__test_api__src__backend__closed_exception$46dart.src__backend__closed_exception;
+  const utils = packages__test_api__src__utils$46dart.src__utils;
+  const test = packages__test_api__src__backend__suite$46dart.src__backend__test;
+  const live_test = packages__test_api__src__backend__suite$46dart.src__backend__live_test;
+  const suite = packages__test_api__src__backend__suite$46dart.src__backend__suite;
+  const group = packages__test_api__src__backend__suite$46dart.src__backend__group;
+  const group_entry = packages__test_api__src__backend__suite$46dart.src__backend__group_entry;
+  const suite_platform = packages__test_api__src__backend__suite_platform$46dart.src__backend__suite_platform;
+  const metadata$ = packages__test_api__src__backend__metadata$46dart.src__backend__metadata;
+  const trace$ = packages__stack_trace__src__stack_zone_specification$46dart.src__trace;
+  const chain = packages__stack_trace__src__stack_zone_specification$46dart.src__chain;
+  const live_test_controller = packages__test_api__src__backend__live_test_controller$46dart.src__backend__live_test_controller;
+  const state = packages__test_api__src__backend__state$46dart.src__backend__state;
+  const message$ = packages__test_api__src__backend__message$46dart.src__backend__message;
+  const empty_unmodifiable_set = packages__collection__src__union_set_controller$46dart.src__empty_unmodifiable_set;
+  const timeout = packages__test_api__src__frontend__timeout$46dart.src__frontend__timeout;
+  var async_matcher = Object.create(dart.library);
+  var expect = Object.create(dart.library);
+  var invoker$ = Object.create(dart.library);
+  var test$ = Object.create(dart.library);
+  var declarer$ = Object.create(dart.library);
+  var $_set = dartx._set;
+  var $_get = dartx._get;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $add = dartx.add;
+  var $remove = dartx.remove;
+  var $last = dartx.last;
+  var $trim = dartx.trim;
+  var $join = dartx.join;
+  var $clear = dartx.clear;
+  var $removeLast = dartx.removeLast;
+  var $reversed = dartx.reversed;
+  var $startsWith = dartx.startsWith;
+  var $contains = dartx.contains;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $isEmpty = dartx.isEmpty;
+  dart._checkModuleNullSafetyMode(true);
+  var T$ = {
+    TypeMatcherOfFuture: () => (T$.TypeMatcherOfFuture = dart.constFn(type_matcher.TypeMatcher$(async.Future)))(),
+    TypeMatcherOfString: () => (T$.TypeMatcherOfString = dart.constFn(type_matcher.TypeMatcher$(core.String)))(),
+    JSArrayOfMatcher: () => (T$.JSArrayOfMatcher = dart.constFn(_interceptors.JSArray$(interfaces.Matcher)))(),
+    dynamicToNull: () => (T$.dynamicToNull = dart.constFn(dart.fnType(core.Null, [dart.dynamic])))(),
+    StringN: () => (T$.StringN = dart.constFn(dart.nullable(core.String)))(),
+    dynamicAndMatcherAndStringN__ToString: () => (T$.dynamicAndMatcherAndStringN__ToString = dart.constFn(dart.fnType(core.String, [dart.dynamic, interfaces.Matcher, T$.StringN(), core.Map, core.bool])))(),
+    VoidToNull: () => (T$.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    CompleterOfvoid: () => (T$.CompleterOfvoid = dart.constFn(async.Completer$(dart.void)))(),
+    JSArrayOfZone: () => (T$.JSArrayOfZone = dart.constFn(_interceptors.JSArray$(async.Zone)))(),
+    VoidTodynamic: () => (T$.VoidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [])))(),
+    JSArrayOfVoidTodynamic: () => (T$.JSArrayOfVoidTodynamic = dart.constFn(_interceptors.JSArray$(T$.VoidTodynamic())))(),
+    JSArrayOfString: () => (T$.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
+    _AsyncCounterN: () => (T$._AsyncCounterN = dart.constFn(dart.nullable(invoker$._AsyncCounter)))(),
+    InvokerN: () => (T$.InvokerN = dart.constFn(dart.nullable(invoker$.Invoker)))(),
+    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    ZoneAndZoneDelegateAndZone__Tovoid: () => (T$.ZoneAndZoneDelegateAndZone__Tovoid = dart.constFn(dart.fnType(dart.void, [async.Zone, async.ZoneDelegate, async.Zone, core.Object, core.StackTrace])))(),
+    FutureOfNull: () => (T$.FutureOfNull = dart.constFn(async.Future$(core.Null)))(),
+    VoidToFutureOfNull: () => (T$.VoidToFutureOfNull = dart.constFn(dart.fnType(T$.FutureOfNull(), [])))(),
+    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    LinkedMapOfObjectN$ObjectN: () => (T$.LinkedMapOfObjectN$ObjectN = dart.constFn(_js_helper.LinkedMap$(T$.ObjectN(), T$.ObjectN())))(),
+    VoidToString: () => (T$.VoidToString = dart.constFn(dart.fnType(core.String, [])))(),
+    VoidToFutureOrNOfvoid: () => (T$.VoidToFutureOrNOfvoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    ZoneAndZoneDelegateAndZone__Tovoid$1: () => (T$.ZoneAndZoneDelegateAndZone__Tovoid$1 = dart.constFn(dart.fnType(dart.void, [async.Zone, async.ZoneDelegate, async.Zone, core.String])))(),
+    voidTovoid: () => (T$.voidTovoid = dart.constFn(dart.fnType(dart.void, [dart.void])))(),
+    EmptyUnmodifiableSetOfString: () => (T$.EmptyUnmodifiableSetOfString = dart.constFn(empty_unmodifiable_set.EmptyUnmodifiableSet$(core.String)))(),
+    JSArrayOfGroupEntry: () => (T$.JSArrayOfGroupEntry = dart.constFn(_interceptors.JSArray$(group_entry.GroupEntry)))(),
+    DeclarerN: () => (T$.DeclarerN = dart.constFn(dart.nullable(declarer$.Declarer)))(),
+    JSArrayOfDeclarer: () => (T$.JSArrayOfDeclarer = dart.constFn(_interceptors.JSArray$(declarer$.Declarer)))(),
+    GroupEntryToGroupEntry: () => (T$.GroupEntryToGroupEntry = dart.constFn(dart.fnType(group_entry.GroupEntry, [group_entry.GroupEntry])))(),
+    FunctionTodynamic: () => (T$.FunctionTodynamic = dart.constFn(dart.fnType(dart.dynamic, [core.Function])))(),
+    VoidToFuture: () => (T$.VoidToFuture = dart.constFn(dart.fnType(async.Future, [])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T$);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const(new _internal.Symbol.new('test.invoker'));
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 30000000
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: state.Result.prototype,
+        [Result_name]: "error"
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: state.Status.prototype,
+        [Status_name]: "complete"
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: state.State.prototype,
+        [State_result]: C[3] || CT.C3,
+        [State_status]: C[4] || CT.C4
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: state.Result.prototype,
+        [Result_name]: "skipped"
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: state.Status.prototype,
+        [Status_name]: "pending"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: state.State.prototype,
+        [State_result]: C[6] || CT.C6,
+        [State_status]: C[7] || CT.C7
+      });
+    },
+    get C8() {
+      return C[8] = dart.const(new _internal.Symbol.new('runCount'));
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: state.Result.prototype,
+        [Result_name]: "failure"
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: state.State.prototype,
+        [State_result]: C[10] || CT.C10,
+        [State_status]: C[4] || CT.C4
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: state.Result.prototype,
+        [Result_name]: "success"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: state.Status.prototype,
+        [Status_name]: "running"
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: state.State.prototype,
+        [State_result]: C[12] || CT.C12,
+        [State_status]: C[13] || CT.C13
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: T$.EmptyUnmodifiableSetOfString().prototype
+      });
+    },
+    get C15() {
+      return C[15] = dart.const(new _internal.Symbol.new('test.declarer'));
+    }
+  }, false);
+  var C = Array(16).fill(void 0);
+  var I = [
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib/src/frontend/async_matcher.dart",
+    "package:test_api/src/frontend/async_matcher.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib/src/frontend/expect.dart",
+    "package:test_api/src/frontend/expect.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib/src/backend/invoker.dart",
+    "package:test_api/src/backend/invoker.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib/src/util/test.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib/src/backend/declarer.dart",
+    "package:test_api/src/backend/declarer.dart"
+  ];
+  async_matcher.AsyncMatcher = class AsyncMatcher extends interfaces.Matcher {
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[0], 33, 26, "matchState");
+      let result = this.matchAsync(item);
+      expect.expect(result, operator_matchers.anyOf(T$.JSArrayOfMatcher().of([equals_matcher.equals(null), new (T$.TypeMatcherOfFuture()).new(), new (T$.TypeMatcherOfString()).new()])), {reason: "matchAsync() may only return a String, a Future, or null."});
+      if (async.Future.is(result)) {
+        dart.nullCheck(invoker$.Invoker.current).addOutstandingCallback();
+        result.then(core.Null, dart.fn(realResult => {
+          if (realResult != null) {
+            expect.fail(expect.formatFailure(this, item, core.String.as(realResult)));
+          }
+          dart.nullCheck(invoker$.Invoker.current).removeOutstandingCallback();
+        }, T$.dynamicToNull()));
+      } else if (typeof result == 'string') {
+        matchState[$_set](this, result);
+        return false;
+      }
+      return true;
+    }
+    describeMismatch(item, description, matchState, verbose) {
+      if (description == null) dart.nullFailed(I[0], 57, 29, "description");
+      if (matchState == null) dart.nullFailed(I[0], 57, 46, "matchState");
+      if (verbose == null) dart.nullFailed(I[0], 57, 63, "verbose");
+      return new description$.StringDescription.new(core.String.as(matchState[$_get](this)));
+    }
+  };
+  (async_matcher.AsyncMatcher.new = function() {
+    async_matcher.AsyncMatcher.__proto__.new.call(this);
+    ;
+  }).prototype = async_matcher.AsyncMatcher.prototype;
+  dart.addTypeTests(async_matcher.AsyncMatcher);
+  dart.addTypeCaches(async_matcher.AsyncMatcher);
+  dart.setMethodSignature(async_matcher.AsyncMatcher, () => ({
+    __proto__: dart.getMethods(async_matcher.AsyncMatcher.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map])
+  }));
+  dart.setLibraryUri(async_matcher.AsyncMatcher, I[1]);
+  var message$0 = dart.privateName(expect, "TestFailure.message");
+  expect.TestFailure = class TestFailure extends core.Object {
+    get message() {
+      return this[message$0];
+    }
+    set message(value) {
+      super.message = value;
+    }
+    toString() {
+      return this.message;
+    }
+  };
+  (expect.TestFailure.new = function(message) {
+    if (message == null) dart.nullFailed(I[2], 18, 20, "message");
+    this[message$0] = message;
+    ;
+  }).prototype = expect.TestFailure.prototype;
+  dart.addTypeTests(expect.TestFailure);
+  dart.addTypeCaches(expect.TestFailure);
+  dart.setLibraryUri(expect.TestFailure, I[3]);
+  dart.setFieldSignature(expect.TestFailure, () => ({
+    __proto__: dart.getFields(expect.TestFailure.__proto__),
+    message: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(expect.TestFailure, ['toString']);
+  expect.expect = function expect$(actual, matcher, opts) {
+    let reason = opts && 'reason' in opts ? opts.reason : null;
+    let skip = opts && 'skip' in opts ? opts.skip : null;
+    let verbose = opts && 'verbose' in opts ? opts.verbose : false;
+    if (verbose == null) dart.nullFailed(I[2], 57, 52, "verbose");
+    let formatter = opts && 'formatter' in opts ? opts.formatter : null;
+    expect._expect(actual, matcher, {reason: reason, skip: skip, verbose: verbose, formatter: formatter});
+  };
+  expect.expectLater = function expectLater(actual, matcher, opts) {
+    let reason = opts && 'reason' in opts ? opts.reason : null;
+    let skip = opts && 'skip' in opts ? opts.skip : null;
+    return expect._expect(actual, matcher, {reason: reason, skip: skip});
+  };
+  expect._expect = function _expect(actual, matcher, opts) {
+    let reason = opts && 'reason' in opts ? opts.reason : null;
+    let skip = opts && 'skip' in opts ? opts.skip : null;
+    let verbose = opts && 'verbose' in opts ? opts.verbose : false;
+    if (verbose == null) dart.nullFailed(I[2], 82, 33, "verbose");
+    let formatter = opts && 'formatter' in opts ? opts.formatter : null;
+    formatter == null ? formatter = dart.fn((actual, matcher, reason, matchState, verbose) => {
+      if (matcher == null) dart.nullFailed(I[2], 83, 26, "matcher");
+      if (matchState == null) dart.nullFailed(I[2], 83, 43, "matchState");
+      if (verbose == null) dart.nullFailed(I[2], 83, 55, "verbose");
+      let mismatchDescription = new description$.StringDescription.new();
+      matcher.describeMismatch(actual, mismatchDescription, matchState, verbose);
+      return expect.formatFailure(matcher, actual, mismatchDescription.toString(), {reason: reason});
+    }, T$.dynamicAndMatcherAndStringN__ToString()) : null;
+    if (invoker$.Invoker.current == null) {
+      dart.throw(new core.StateError.new("expect() may only be called within a test."));
+    }
+    if (dart.test(dart.nullCheck(invoker$.Invoker.current).closed)) dart.throw(new closed_exception.ClosedException.new());
+    if (skip != null && !(typeof skip == 'boolean') && !(typeof skip == 'string')) {
+      dart.throw(new core.ArgumentError.value(skip, "skip", "must be a bool or a String"));
+    }
+    matcher = util.wrapMatcher(matcher);
+    if (skip != null && !dart.equals(skip, false)) {
+      let message = null;
+      if (typeof skip == 'string') {
+        message = "Skip expect: " + dart.str(skip);
+      } else if (reason != null) {
+        message = "Skip expect (" + dart.str(reason) + ").";
+      } else {
+        let description = new description$.StringDescription.new().addDescriptionOf(matcher);
+        message = "Skip expect (" + dart.str(description) + ").";
+      }
+      dart.nullCheck(invoker$.Invoker.current).skip(message);
+      return async.Future.sync(dart.fn(() => {
+      }, T$.VoidToNull()));
+    }
+    if (async_matcher.AsyncMatcher.is(matcher)) {
+      let result = matcher.matchAsync(actual);
+      expect.expect(result, operator_matchers.anyOf(T$.JSArrayOfMatcher().of([equals_matcher.equals(null), new (T$.TypeMatcherOfFuture()).new(), new (T$.TypeMatcherOfString()).new()])), {reason: "matchAsync() may only return a String, a Future, or null."});
+      if (typeof result == 'string') {
+        expect.fail(expect.formatFailure(matcher, actual, result, {reason: reason}));
+      } else if (async.Future.is(result)) {
+        dart.nullCheck(invoker$.Invoker.current).addOutstandingCallback();
+        return result.then(core.Null, dart.fn(realResult => {
+          if (realResult == null) return;
+          expect.fail(expect.formatFailure(interfaces.Matcher.as(matcher), actual, core.String.as(realResult), {reason: reason}));
+        }, T$.dynamicToNull())).whenComplete(dart.fn(() => {
+          dart.nullCheck(invoker$.Invoker.current).removeOutstandingCallback();
+        }, T$.VoidToNull()));
+      }
+      return async.Future.sync(dart.fn(() => {
+      }, T$.VoidToNull()));
+    }
+    let matchState = new _js_helper.LinkedMap.new();
+    try {
+      if (dart.test(interfaces.Matcher.as(matcher).matches(actual, matchState))) {
+        return async.Future.sync(dart.fn(() => {
+        }, T$.VoidToNull()));
+      }
+    } catch (e$) {
+      let e = dart.getThrown(e$);
+      let trace = dart.stackTrace(e$);
+      if (core.Object.is(e)) {
+        reason == null ? reason = dart.str(e) + " at " + dart.str(trace) : null;
+      } else
+        throw e$;
+    }
+    expect.fail(formatter(actual, interfaces.Matcher.as(matcher), reason, matchState, verbose));
+  };
+  expect.fail = function fail(message) {
+    if (message == null) dart.nullFailed(I[2], 155, 19, "message");
+    return dart.throw(new expect.TestFailure.new(message));
+  };
+  expect.formatFailure = function formatFailure(expected, actual, which, opts) {
+    if (expected == null) dart.nullFailed(I[2], 159, 30, "expected");
+    if (which == null) dart.nullFailed(I[2], 159, 55, "which");
+    let reason = opts && 'reason' in opts ? opts.reason : null;
+    let buffer = new core.StringBuffer.new();
+    buffer.writeln(utils.indent(utils.prettyPrint(expected), {first: "Expected: "}));
+    buffer.writeln(utils.indent(utils.prettyPrint(actual), {first: "  Actual: "}));
+    if (which[$isNotEmpty]) buffer.writeln(utils.indent(which, {first: "   Which: "}));
+    if (reason != null) buffer.writeln(reason);
+    return buffer.toString();
+  };
+  var name$ = dart.privateName(invoker$, "LocalTest.name");
+  var metadata$0 = dart.privateName(invoker$, "LocalTest.metadata");
+  var trace$0 = dart.privateName(invoker$, "LocalTest.trace");
+  var isScaffoldAll$ = dart.privateName(invoker$, "LocalTest.isScaffoldAll");
+  var _body$ = dart.privateName(invoker$, "_body");
+  var _guarded$ = dart.privateName(invoker$, "_guarded");
+  invoker$.LocalTest = class LocalTest extends test.Test {
+    get name() {
+      return this[name$];
+    }
+    set name(value) {
+      super.name = value;
+    }
+    get metadata() {
+      return this[metadata$0];
+    }
+    set metadata(value) {
+      super.metadata = value;
+    }
+    get trace() {
+      return this[trace$0];
+    }
+    set trace(value) {
+      super.trace = value;
+    }
+    get isScaffoldAll() {
+      return this[isScaffoldAll$];
+    }
+    set isScaffoldAll(value) {
+      super.isScaffoldAll = value;
+    }
+    load(suite, opts) {
+      if (suite == null) dart.nullFailed(I[4], 59, 23, "suite");
+      let groups = opts && 'groups' in opts ? opts.groups : null;
+      let invoker = new invoker$.Invoker.__(suite, this, {groups: groups, guarded: this[_guarded$]});
+      return invoker.liveTest;
+    }
+    forPlatform(platform) {
+      if (platform == null) dart.nullFailed(I[4], 65, 35, "platform");
+      if (!dart.test(this.metadata.testOn.evaluate(platform))) return null;
+      return new invoker$.LocalTest.__(this.name, this.metadata.forPlatform(platform), this[_body$], this.trace, this[_guarded$], this.isScaffoldAll);
+    }
+  };
+  (invoker$.LocalTest.new = function(name, metadata, _body, opts) {
+    if (name == null) dart.nullFailed(I[4], 50, 18, "name");
+    if (metadata == null) dart.nullFailed(I[4], 50, 29, "metadata");
+    if (_body == null) dart.nullFailed(I[4], 50, 44, "_body");
+    let trace = opts && 'trace' in opts ? opts.trace : null;
+    let guarded = opts && 'guarded' in opts ? opts.guarded : true;
+    if (guarded == null) dart.nullFailed(I[4], 51, 25, "guarded");
+    let isScaffoldAll = opts && 'isScaffoldAll' in opts ? opts.isScaffoldAll : false;
+    if (isScaffoldAll == null) dart.nullFailed(I[4], 51, 46, "isScaffoldAll");
+    this[name$] = name;
+    this[metadata$0] = metadata;
+    this[_body$] = _body;
+    this[trace$0] = trace;
+    this[isScaffoldAll$] = isScaffoldAll;
+    this[_guarded$] = guarded;
+    ;
+  }).prototype = invoker$.LocalTest.prototype;
+  (invoker$.LocalTest.__ = function(name, metadata, _body, trace, _guarded, isScaffoldAll) {
+    if (name == null) dart.nullFailed(I[4], 54, 20, "name");
+    if (metadata == null) dart.nullFailed(I[4], 54, 31, "metadata");
+    if (_body == null) dart.nullFailed(I[4], 54, 46, "_body");
+    if (_guarded == null) dart.nullFailed(I[4], 54, 70, "_guarded");
+    if (isScaffoldAll == null) dart.nullFailed(I[4], 55, 12, "isScaffoldAll");
+    this[name$] = name;
+    this[metadata$0] = metadata;
+    this[_body$] = _body;
+    this[trace$0] = trace;
+    this[_guarded$] = _guarded;
+    this[isScaffoldAll$] = isScaffoldAll;
+    ;
+  }).prototype = invoker$.LocalTest.prototype;
+  dart.addTypeTests(invoker$.LocalTest);
+  dart.addTypeCaches(invoker$.LocalTest);
+  dart.setMethodSignature(invoker$.LocalTest, () => ({
+    __proto__: dart.getMethods(invoker$.LocalTest.__proto__),
+    load: dart.fnType(live_test.LiveTest, [suite.Suite], {groups: dart.nullable(core.Iterable$(group.Group))}, {}),
+    forPlatform: dart.fnType(dart.nullable(test.Test), [suite_platform.SuitePlatform])
+  }));
+  dart.setLibraryUri(invoker$.LocalTest, I[5]);
+  dart.setFieldSignature(invoker$.LocalTest, () => ({
+    __proto__: dart.getFields(invoker$.LocalTest.__proto__),
+    name: dart.finalFieldType(core.String),
+    metadata: dart.finalFieldType(metadata$.Metadata),
+    trace: dart.finalFieldType(dart.nullable(trace$.Trace)),
+    isScaffoldAll: dart.finalFieldType(core.bool),
+    [_body$]: dart.finalFieldType(dart.fnType(dart.dynamic, [])),
+    [_guarded$]: dart.finalFieldType(core.bool)
+  }));
+  var __Invoker__controller = dart.privateName(invoker$, "_#Invoker#_controller");
+  var _closableKey = dart.privateName(invoker$, "_closableKey");
+  var _onCloseCompleter = dart.privateName(invoker$, "_onCloseCompleter");
+  var _outstandingCallbackZones = dart.privateName(invoker$, "_outstandingCallbackZones");
+  var _counterKey = dart.privateName(invoker$, "_counterKey");
+  var _runCount = dart.privateName(invoker$, "_runCount");
+  var _timeoutTimer = dart.privateName(invoker$, "_timeoutTimer");
+  var _tearDowns = dart.privateName(invoker$, "_tearDowns");
+  var _printsOnFailure = dart.privateName(invoker$, "_printsOnFailure");
+  var _controller = dart.privateName(invoker$, "_controller");
+  var _onRun = dart.privateName(invoker$, "_onRun");
+  var _closable = dart.privateName(invoker$, "_closable");
+  var _test = dart.privateName(invoker$, "_test");
+  var _outstandingCallbacks = dart.privateName(invoker$, "_outstandingCallbacks");
+  var _handleError = dart.privateName(invoker$, "_handleError");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var Result_name = dart.privateName(state, "Result.name");
+  var State_result = dart.privateName(state, "State.result");
+  var Status_name = dart.privateName(state, "Status.name");
+  var State_status = dart.privateName(state, "State.status");
+  var _runTearDowns = dart.privateName(invoker$, "_runTearDowns");
+  var _print = dart.privateName(invoker$, "_print");
+  var _guardIfGuarded = dart.privateName(invoker$, "_guardIfGuarded");
+  invoker$.Invoker = class Invoker extends core.Object {
+    get liveTest() {
+      return this[_controller];
+    }
+    get [_controller]() {
+      let t1;
+      t1 = this[__Invoker__controller];
+      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_controller")) : t1;
+    }
+    set [_controller](t1) {
+      if (t1 == null) dart.nullFailed(I[4], 82, 33, "null");
+      if (this[__Invoker__controller] == null)
+        this[__Invoker__controller] = t1;
+      else
+        dart.throw(new _internal.LateError.fieldAI("_controller"));
+    }
+    get [_closable]() {
+      return core.bool.as(async.Zone.current._get(this[_closableKey]));
+    }
+    get closed() {
+      return dart.test(this[_closable]) && dart.test(this[_onCloseCompleter].isCompleted);
+    }
+    get onClose() {
+      return dart.test(this[_closable]) ? this[_onCloseCompleter].future : T$.CompleterOfvoid().new().future;
+    }
+    get [_test]() {
+      return invoker$.LocalTest.as(this.liveTest.test);
+    }
+    get [_outstandingCallbacks]() {
+      let counter = T$._AsyncCounterN().as(async.Zone.current._get(this[_counterKey]));
+      if (counter != null) return counter;
+      dart.throw(new core.StateError.new("Can't add or remove outstanding callbacks outside " + "of a test body."));
+    }
+    static get current() {
+      return T$.InvokerN().as(async.Zone.current._get(C[0] || CT.C0));
+    }
+    static guard(T, callback) {
+      if (callback == null) dart.nullFailed(I[4], 149, 35, "callback");
+      return async.runZoned(dart.nullable(T), callback, {zoneSpecification: new async._ZoneSpecification.new({handleUncaughtError: dart.fn((self, _, zone, error, stackTrace) => {
+            if (self == null) dart.nullFailed(I[4], 154, 33, "self");
+            if (_ == null) dart.nullFailed(I[4], 154, 39, "_");
+            if (zone == null) dart.nullFailed(I[4], 154, 42, "zone");
+            if (error == null) dart.nullFailed(I[4], 154, 48, "error");
+            if (stackTrace == null) dart.nullFailed(I[4], 154, 55, "stackTrace");
+            let invoker = T$.InvokerN().as(zone._get(C[0] || CT.C0));
+            if (invoker != null) {
+              dart.nullCheck(self.parent).run(dart.void, dart.fn(() => invoker[_handleError](zone, error, stackTrace), T$.VoidTovoid()));
+            } else {
+              dart.nullCheck(self.parent).handleUncaughtError(error, stackTrace);
+            }
+          }, T$.ZoneAndZoneDelegateAndZone__Tovoid())})});
+    }
+    addTearDown(callback) {
+      if (callback == null) dart.nullFailed(I[4], 186, 39, "callback");
+      if (dart.test(this.closed)) dart.throw(new closed_exception.ClosedException.new());
+      if (dart.test(this[_test].isScaffoldAll)) {
+        dart.nullCheck(declarer$.Declarer.current).addTearDownAll(callback);
+      } else {
+        this[_tearDowns][$add](callback);
+      }
+    }
+    addOutstandingCallback() {
+      if (dart.test(this.closed)) dart.throw(new closed_exception.ClosedException.new());
+      this[_outstandingCallbacks].increment();
+    }
+    removeOutstandingCallback() {
+      this.heartbeat();
+      this[_outstandingCallbacks].decrement();
+    }
+    waitForOutstandingCallbacks(fn) {
+      if (fn == null) dart.nullFailed(I[4], 223, 70, "fn");
+      this.heartbeat();
+      let zone = null;
+      let counter = new invoker$._AsyncCounter.new();
+      async.runZoned(T$.FutureOfNull(), dart.fn(() => async.async(core.Null, (function*() {
+        zone = async.Zone.current;
+        this[_outstandingCallbackZones][$add](dart.nullCheck(zone));
+        yield fn();
+        counter.decrement();
+      }).bind(this)), T$.VoidToFutureOfNull()), {zoneValues: new (T$.LinkedMapOfObjectN$ObjectN()).from([this[_counterKey], counter])});
+      return counter.onZero.whenComplete(dart.fn(() => {
+        this[_outstandingCallbackZones][$remove](dart.nullCheck(zone));
+      }, T$.VoidToNull()));
+    }
+    unclosable(T, fn) {
+      if (fn == null) dart.nullFailed(I[4], 245, 32, "fn");
+      this.heartbeat();
+      return async.runZoned(T, fn, {zoneValues: new (T$.LinkedMapOfObjectN$ObjectN()).from([this[_closableKey], false])});
+    }
+    heartbeat() {
+      if (dart.test(this.liveTest.isComplete)) return;
+      if (this[_timeoutTimer] != null) dart.nullCheck(this[_timeoutTimer]).cancel();
+      let defaultTimeout = C[1] || CT.C1;
+      let timeout = this.liveTest.test.metadata.timeout.apply(defaultTimeout);
+      if (timeout == null) return;
+      function message() {
+        let message = "Test timed out after " + dart.str(utils.niceDuration(timeout)) + ".";
+        if (dart.equals(timeout, defaultTimeout)) {
+          message = message + " See https://pub.dev/packages/test#timeouts";
+        }
+        return message;
+      }
+      dart.fn(message, T$.VoidToString());
+      this[_timeoutTimer] = async.Zone.root.createTimer(timeout, dart.fn(() => {
+        this[_outstandingCallbackZones][$last].run(core.Null, dart.fn(() => {
+          this[_handleError](async.Zone.current, new async.TimeoutException.new(message(), timeout));
+        }, T$.VoidToNull()));
+      }, T$.VoidTovoid()));
+    }
+    skip(message = null) {
+      if (dart.test(this.liveTest.state.shouldBeDone)) {
+        this[_controller].setState(C[2] || CT.C2);
+        dart.throw("This test was marked as skipped after it had already completed. " + "Make sure to use\n" + "[expectAsync] or the [completes] matcher when testing async code.");
+      }
+      if (message != null) this[_controller].message(new message$.Message.skip(message));
+      this[_controller].setState(C[5] || CT.C5);
+    }
+    printOnFailure(message) {
+      if (message == null) dart.nullFailed(I[4], 299, 30, "message");
+      message = message[$trim]();
+      if (dart.test(this.liveTest.state.result.isFailing)) {
+        core.print("\n" + dart.str(message));
+      } else {
+        this[_printsOnFailure][$add](message);
+      }
+    }
+    [_handleError](zone, error, stackTrace = null) {
+      if (zone == null) dart.nullFailed(I[4], 311, 26, "zone");
+      if (error == null) dart.nullFailed(I[4], 311, 39, "error");
+      if (!core.identical(this[_runCount], zone._get(C[8] || CT.C8))) return;
+      zone.run(core.Null, dart.fn(() => {
+        if (stackTrace == null) {
+          stackTrace = chain.Chain.current();
+        } else {
+          stackTrace = chain.Chain.forTrace(dart.nullCheck(stackTrace));
+        }
+      }, T$.VoidToNull()));
+      let shouldBeDone = this.liveTest.state.shouldBeDone;
+      if (!expect.TestFailure.is(error)) {
+        this[_controller].setState(C[2] || CT.C2);
+      } else if (!dart.equals(this.liveTest.state.result, state.Result.error)) {
+        this[_controller].setState(C[9] || CT.C9);
+      }
+      this[_controller].addError(error, dart.nullCheck(stackTrace));
+      zone.run(dart.void, dart.fn(() => this[_outstandingCallbacks].complete(), T$.VoidTovoid()));
+      if (!dart.test(this.liveTest.test.metadata.chainStackTraces)) {
+        this[_printsOnFailure][$add]("Consider enabling the flag chain-stack-traces to " + "receive more detailed exceptions.\n" + "For example, 'pub run test --chain-stack-traces'.");
+      }
+      if (dart.test(this[_printsOnFailure][$isNotEmpty])) {
+        core.print(this[_printsOnFailure][$join]("\n\n"));
+        this[_printsOnFailure][$clear]();
+      }
+      if (!dart.test(shouldBeDone)) return;
+      if (dart.test(this.liveTest.suite.isLoadSuite)) return;
+      this[_handleError](zone, "This test failed after it had already completed. Make sure to use " + "[expectAsync]\n" + "or the [completes] matcher when testing async code.", stackTrace);
+    }
+    [_onRun]() {
+      this[_controller].setState(C[11] || CT.C11);
+      this[_runCount] = dart.notNull(this[_runCount]) + 1;
+      chain.Chain.capture(core.Null, dart.fn(() => {
+        this[_guardIfGuarded](dart.fn(() => {
+          async.runZoned(T$.FutureOfNull(), dart.fn(() => async.async(core.Null, (function*() {
+            this[_outstandingCallbackZones][$add](async.Zone.current);
+            yield T$.FutureOfNull().new(dart.fn(() => {
+            }, T$.VoidToNull()));
+            yield this.waitForOutstandingCallbacks(this[_test][_body$]);
+            yield this.waitForOutstandingCallbacks(dart.fn(() => this.unclosable(dart.void, dart.bind(this, _runTearDowns)), T$.VoidToFutureOrNOfvoid()));
+            if (this[_timeoutTimer] != null) dart.nullCheck(this[_timeoutTimer]).cancel();
+            if (!dart.equals(this.liveTest.state.result, state.Result.success) && dart.notNull(this[_runCount]) < dart.notNull(this.liveTest.test.metadata.retry) + 1) {
+              this[_controller].message(new message$.Message.print("Retry: " + dart.str(this.liveTest.test.name)));
+              this[_onRun]();
+              return;
+            }
+            this[_controller].setState(new state.State.new(state.Status.complete, this.liveTest.state.result));
+            this[_controller].completer.complete();
+          }).bind(this)), T$.VoidToFutureOfNull()), {zoneValues: new (T$.LinkedMapOfObjectN$ObjectN()).from([C[0] || CT.C0, this, this[_closableKey], true, C[8] || CT.C8, this[_runCount]]), zoneSpecification: new async._ZoneSpecification.new({print: dart.fn((_, __, ___, line) => {
+                if (_ == null) dart.nullFailed(I[4], 405, 43, "_");
+                if (__ == null) dart.nullFailed(I[4], 405, 46, "__");
+                if (___ == null) dart.nullFailed(I[4], 405, 50, "___");
+                if (line == null) dart.nullFailed(I[4], 405, 55, "line");
+                return this[_print](line);
+              }, T$.ZoneAndZoneDelegateAndZone__Tovoid$1())})});
+        }, T$.VoidTovoid()));
+      }, T$.VoidToNull()), {when: this.liveTest.test.metadata.chainStackTraces, errorZone: false});
+    }
+    [_guardIfGuarded](callback) {
+      if (callback == null) dart.nullFailed(I[4], 411, 40, "callback");
+      if (dart.test(this[_guarded$])) {
+        invoker$.Invoker.guard(dart.void, callback);
+      } else {
+        callback();
+      }
+    }
+    [_print](text) {
+      if (text == null) dart.nullFailed(I[4], 420, 22, "text");
+      return this[_controller].message(new message$.Message.print(text));
+    }
+    [_runTearDowns]() {
+      return async.async(dart.void, (function* _runTearDowns() {
+        while (dart.test(this[_tearDowns][$isNotEmpty])) {
+          yield test$.errorsDontStopTest(this[_tearDowns][$removeLast]());
+        }
+      }).bind(this));
+    }
+  };
+  (invoker$.Invoker.__ = function(suite, test, opts) {
+    if (suite == null) dart.nullFailed(I[4], 174, 19, "suite");
+    if (test == null) dart.nullFailed(I[4], 174, 36, "test");
+    let groups = opts && 'groups' in opts ? opts.groups : null;
+    let guarded = opts && 'guarded' in opts ? opts.guarded : true;
+    if (guarded == null) dart.nullFailed(I[4], 175, 38, "guarded");
+    this[__Invoker__controller] = null;
+    this[_closableKey] = new core.Object.new();
+    this[_onCloseCompleter] = T$.CompleterOfvoid().new();
+    this[_outstandingCallbackZones] = T$.JSArrayOfZone().of([]);
+    this[_counterKey] = new core.Object.new();
+    this[_runCount] = 0;
+    this[_timeoutTimer] = null;
+    this[_tearDowns] = T$.JSArrayOfVoidTodynamic().of([]);
+    this[_printsOnFailure] = T$.JSArrayOfString().of([]);
+    this[_guarded$] = guarded;
+    this[_controller] = new live_test_controller.LiveTestController.new(suite, test, dart.bind(this, _onRun), dart.bind(this[_onCloseCompleter], 'complete'), {groups: groups});
+  }).prototype = invoker$.Invoker.prototype;
+  dart.addTypeTests(invoker$.Invoker);
+  dart.addTypeCaches(invoker$.Invoker);
+  dart.setMethodSignature(invoker$.Invoker, () => ({
+    __proto__: dart.getMethods(invoker$.Invoker.__proto__),
+    addTearDown: dart.fnType(dart.void, [dart.fnType(dart.dynamic, [])]),
+    addOutstandingCallback: dart.fnType(dart.void, []),
+    removeOutstandingCallback: dart.fnType(dart.void, []),
+    waitForOutstandingCallbacks: dart.fnType(async.Future$(dart.void), [dart.fnType(dart.void, [])]),
+    unclosable: dart.gFnType(T => [T, [dart.fnType(T, [])]], T => [dart.nullable(core.Object)]),
+    heartbeat: dart.fnType(dart.void, []),
+    skip: dart.fnType(dart.void, [], [dart.nullable(core.String)]),
+    printOnFailure: dart.fnType(dart.void, [core.String]),
+    [_handleError]: dart.fnType(dart.void, [async.Zone, core.Object], [dart.nullable(core.StackTrace)]),
+    [_onRun]: dart.fnType(dart.void, []),
+    [_guardIfGuarded]: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+    [_print]: dart.fnType(dart.void, [core.String]),
+    [_runTearDowns]: dart.fnType(async.Future$(dart.void), [])
+  }));
+  dart.setGetterSignature(invoker$.Invoker, () => ({
+    __proto__: dart.getGetters(invoker$.Invoker.__proto__),
+    liveTest: live_test.LiveTest,
+    [_controller]: live_test_controller.LiveTestController,
+    [_closable]: core.bool,
+    closed: core.bool,
+    onClose: async.Future$(dart.void),
+    [_test]: invoker$.LocalTest,
+    [_outstandingCallbacks]: invoker$._AsyncCounter
+  }));
+  dart.setSetterSignature(invoker$.Invoker, () => ({
+    __proto__: dart.getSetters(invoker$.Invoker.__proto__),
+    [_controller]: live_test_controller.LiveTestController
+  }));
+  dart.setLibraryUri(invoker$.Invoker, I[5]);
+  dart.setFieldSignature(invoker$.Invoker, () => ({
+    __proto__: dart.getFields(invoker$.Invoker.__proto__),
+    [__Invoker__controller]: dart.fieldType(dart.nullable(live_test_controller.LiveTestController)),
+    [_guarded$]: dart.finalFieldType(core.bool),
+    [_closableKey]: dart.finalFieldType(core.Object),
+    [_onCloseCompleter]: dart.finalFieldType(async.Completer$(dart.void)),
+    [_outstandingCallbackZones]: dart.finalFieldType(core.List$(async.Zone)),
+    [_counterKey]: dart.finalFieldType(core.Object),
+    [_runCount]: dart.fieldType(core.int),
+    [_timeoutTimer]: dart.fieldType(dart.nullable(async.Timer)),
+    [_tearDowns]: dart.finalFieldType(core.List$(dart.fnType(dart.dynamic, []))),
+    [_printsOnFailure]: dart.finalFieldType(core.List$(core.String))
+  }));
+  var _count = dart.privateName(invoker$, "_count");
+  var _completer = dart.privateName(invoker$, "_completer");
+  invoker$._AsyncCounter = class _AsyncCounter extends core.Object {
+    get onZero() {
+      return this[_completer].future;
+    }
+    increment() {
+      this[_count] = dart.notNull(this[_count]) + 1;
+    }
+    decrement() {
+      this[_count] = dart.notNull(this[_count]) - 1;
+      if (this[_count] !== 0) return;
+      if (dart.test(this[_completer].isCompleted)) return;
+      this[_completer].complete();
+    }
+    complete() {
+      if (!dart.test(this[_completer].isCompleted)) this[_completer].complete();
+    }
+  };
+  (invoker$._AsyncCounter.new = function() {
+    this[_count] = 1;
+    this[_completer] = T$.CompleterOfvoid().new();
+    ;
+  }).prototype = invoker$._AsyncCounter.prototype;
+  dart.addTypeTests(invoker$._AsyncCounter);
+  dart.addTypeCaches(invoker$._AsyncCounter);
+  dart.setMethodSignature(invoker$._AsyncCounter, () => ({
+    __proto__: dart.getMethods(invoker$._AsyncCounter.__proto__),
+    increment: dart.fnType(dart.void, []),
+    decrement: dart.fnType(dart.void, []),
+    complete: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(invoker$._AsyncCounter, () => ({
+    __proto__: dart.getGetters(invoker$._AsyncCounter.__proto__),
+    onZero: async.Future$(dart.void)
+  }));
+  dart.setLibraryUri(invoker$._AsyncCounter, I[5]);
+  dart.setFieldSignature(invoker$._AsyncCounter, () => ({
+    __proto__: dart.getFields(invoker$._AsyncCounter.__proto__),
+    [_count]: dart.fieldType(core.int),
+    [_completer]: dart.finalFieldType(async.Completer$(dart.void))
+  }));
+  test$.errorsDontStopTest = function errorsDontStopTest(body) {
+    if (body == null) dart.nullFailed(I[6], 16, 46, "body");
+    let completer = async.Completer.new();
+    dart.nullCheck(invoker$.Invoker.current).addOutstandingCallback();
+    dart.nullCheck(invoker$.Invoker.current).waitForOutstandingCallbacks(dart.fn(() => {
+      async.Future.sync(body).whenComplete(dart.bind(completer, 'complete'));
+    }, T$.VoidToNull())).then(dart.void, dart.fn(_ => dart.nullCheck(invoker$.Invoker.current).removeOutstandingCallback(), T$.voidTovoid()));
+    return completer.future;
+  };
+  var _setUps = dart.privateName(declarer$, "_setUps");
+  var _tearDowns$ = dart.privateName(declarer$, "_tearDowns");
+  var _setUpAlls = dart.privateName(declarer$, "_setUpAlls");
+  var _timeout = dart.privateName(declarer$, "_timeout");
+  var _setUpAllTrace = dart.privateName(declarer$, "_setUpAllTrace");
+  var _tearDownAlls = dart.privateName(declarer$, "_tearDownAlls");
+  var _tearDownAllTrace = dart.privateName(declarer$, "_tearDownAllTrace");
+  var _entries = dart.privateName(declarer$, "_entries");
+  var _built = dart.privateName(declarer$, "_built");
+  var _soloEntries = dart.privateName(declarer$, "_soloEntries");
+  var _parent$ = dart.privateName(declarer$, "_parent");
+  var _name$ = dart.privateName(declarer$, "_name");
+  var _metadata$ = dart.privateName(declarer$, "_metadata");
+  var _platformVariables$ = dart.privateName(declarer$, "_platformVariables");
+  var _collectTraces$ = dart.privateName(declarer$, "_collectTraces");
+  var _trace$ = dart.privateName(declarer$, "_trace");
+  var _noRetry$ = dart.privateName(declarer$, "_noRetry");
+  var _fullTestName$ = dart.privateName(declarer$, "_fullTestName");
+  var _solo = dart.privateName(declarer$, "_solo");
+  var _checkNotBuilt = dart.privateName(declarer$, "_checkNotBuilt");
+  var _prefix = dart.privateName(declarer$, "_prefix");
+  var _runSetUps = dart.privateName(declarer$, "_runSetUps");
+  var _setUpAll = dart.privateName(declarer$, "_setUpAll");
+  var _tearDownAll = dart.privateName(declarer$, "_tearDownAll");
+  declarer$.Declarer = class Declarer extends core.Object {
+    get [_solo]() {
+      return this[_soloEntries][$isNotEmpty];
+    }
+    static get current() {
+      return T$.DeclarerN().as(async.Zone.current._get(C[15] || CT.C15));
+    }
+    declare(T, body) {
+      if (body == null) dart.nullFailed(I[7], 153, 29, "body");
+      return async.runZoned(T, body, {zoneValues: new (T$.LinkedMapOfObjectN$ObjectN()).from([C[15] || CT.C15, this])});
+    }
+    test(name, body, opts) {
+      if (name == null) dart.nullFailed(I[7], 157, 20, "name");
+      if (body == null) dart.nullFailed(I[7], 157, 45, "body");
+      let testOn = opts && 'testOn' in opts ? opts.testOn : null;
+      let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+      let skip = opts && 'skip' in opts ? opts.skip : null;
+      let onPlatform = opts && 'onPlatform' in opts ? opts.onPlatform : null;
+      let tags = opts && 'tags' in opts ? opts.tags : null;
+      let retry = opts && 'retry' in opts ? opts.retry : null;
+      let solo = opts && 'solo' in opts ? opts.solo : false;
+      if (solo == null) dart.nullFailed(I[7], 164, 12, "solo");
+      this[_checkNotBuilt]("test");
+      let fullName = this[_prefix](name);
+      if (this[_fullTestName$] != null && fullName != this[_fullTestName$]) {
+        return;
+      }
+      let newMetadata = new metadata$.Metadata.parse({testOn: testOn, timeout: timeout, skip: skip, onPlatform: onPlatform, tags: tags, retry: dart.test(this[_noRetry$]) ? 0 : retry});
+      newMetadata.validatePlatformSelectors(this[_platformVariables$]);
+      let metadata = this[_metadata$].merge(newMetadata);
+      this[_entries][$add](new invoker$.LocalTest.new(fullName, metadata, dart.fn(() => async.async(core.Null, (function*() {
+        let parents = T$.JSArrayOfDeclarer().of([]);
+        for (let declarer = this; declarer != null; declarer = declarer[_parent$]) {
+          parents[$add](declarer);
+        }
+        for (let declarer of parents[$reversed]) {
+          for (let tearDown of declarer[_tearDowns$]) {
+            dart.nullCheck(invoker$.Invoker.current).addTearDown(tearDown);
+          }
+        }
+        yield async.runZoned(T$.FutureOfNull(), dart.fn(() => async.async(core.Null, (function*() {
+          yield this[_runSetUps]();
+          yield body();
+        }).bind(this)), T$.VoidToFutureOfNull()), {zoneValues: new (T$.LinkedMapOfObjectN$ObjectN()).from([C[15] || CT.C15, this])});
+      }).bind(this)), T$.VoidToFutureOfNull()), {trace: dart.test(this[_collectTraces$]) ? trace$.Trace.current(2) : null, guarded: false}));
+      if (dart.test(solo)) {
+        this[_soloEntries][$add](this[_entries][$last]);
+      }
+    }
+    group(name, body, opts) {
+      if (name == null) dart.nullFailed(I[7], 213, 21, "name");
+      if (body == null) dart.nullFailed(I[7], 213, 43, "body");
+      let testOn = opts && 'testOn' in opts ? opts.testOn : null;
+      let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+      let skip = opts && 'skip' in opts ? opts.skip : null;
+      let onPlatform = opts && 'onPlatform' in opts ? opts.onPlatform : null;
+      let tags = opts && 'tags' in opts ? opts.tags : null;
+      let retry = opts && 'retry' in opts ? opts.retry : null;
+      let solo = opts && 'solo' in opts ? opts.solo : false;
+      if (solo == null) dart.nullFailed(I[7], 220, 12, "solo");
+      this[_checkNotBuilt]("group");
+      let fullTestPrefix = this[_prefix](name);
+      if (this[_fullTestName$] != null && !dart.nullCheck(this[_fullTestName$])[$startsWith](fullTestPrefix)) {
+        return;
+      }
+      let newMetadata = new metadata$.Metadata.parse({testOn: testOn, timeout: timeout, skip: skip, onPlatform: onPlatform, tags: tags, retry: dart.test(this[_noRetry$]) ? 0 : retry});
+      newMetadata.validatePlatformSelectors(this[_platformVariables$]);
+      let metadata = this[_metadata$].merge(newMetadata);
+      let trace = dart.test(this[_collectTraces$]) ? trace$.Trace.current(2) : null;
+      let declarer = new declarer$.Declarer.__(this, fullTestPrefix, metadata, this[_platformVariables$], this[_collectTraces$], trace, this[_noRetry$], this[_fullTestName$]);
+      declarer.declare(core.Null, dart.fn(() => {
+        let result = dart.dcall(body, []);
+        if (!async.Future.is(result)) return;
+        dart.throw(new core.ArgumentError.new("Groups may not be async."));
+      }, T$.VoidToNull()));
+      this[_entries][$add](declarer.build());
+      if (dart.test(solo) || dart.test(declarer[_solo])) {
+        this[_soloEntries][$add](this[_entries][$last]);
+      }
+    }
+    [_prefix](name) {
+      if (name == null) dart.nullFailed(I[7], 256, 25, "name");
+      return this[_name$] == null ? name : dart.str(this[_name$]) + " " + dart.str(name);
+    }
+    setUp(callback) {
+      if (callback == null) dart.nullFailed(I[7], 259, 33, "callback");
+      this[_checkNotBuilt]("setUp");
+      this[_setUps][$add](callback);
+    }
+    tearDown(callback) {
+      if (callback == null) dart.nullFailed(I[7], 265, 36, "callback");
+      this[_checkNotBuilt]("tearDown");
+      this[_tearDowns$][$add](callback);
+    }
+    setUpAll(callback) {
+      if (callback == null) dart.nullFailed(I[7], 271, 36, "callback");
+      this[_checkNotBuilt]("setUpAll");
+      if (dart.test(this[_collectTraces$])) this[_setUpAllTrace] == null ? this[_setUpAllTrace] = trace$.Trace.current(2) : null;
+      this[_setUpAlls][$add](callback);
+    }
+    tearDownAll(callback) {
+      if (callback == null) dart.nullFailed(I[7], 278, 39, "callback");
+      this[_checkNotBuilt]("tearDownAll");
+      if (dart.test(this[_collectTraces$])) this[_tearDownAllTrace] == null ? this[_tearDownAllTrace] = trace$.Trace.current(2) : null;
+      this[_tearDownAlls][$add](callback);
+    }
+    addTearDownAll(callback) {
+      if (callback == null) dart.nullFailed(I[7], 286, 42, "callback");
+      return this[_tearDownAlls][$add](callback);
+    }
+    build() {
+      let t2;
+      this[_checkNotBuilt]("build");
+      this[_built] = true;
+      let entries = this[_entries][$map](group_entry.GroupEntry, dart.fn(entry => {
+        if (entry == null) dart.nullFailed(I[7], 297, 33, "entry");
+        if (dart.test(this[_solo]) && !dart.test(this[_soloEntries][$contains](entry))) {
+          entry = new invoker$.LocalTest.new(entry.name, entry.metadata.change({skip: true, skipReason: "does not have \"solo\""}), dart.fn(() => {
+          }, T$.VoidToNull()));
+        }
+        return entry;
+      }, T$.GroupEntryToGroupEntry()))[$toList]();
+      return new group.Group.new((t2 = this[_name$], t2 == null ? "" : t2), entries, {metadata: this[_metadata$], trace: this[_trace$], setUpAll: this[_setUpAll], tearDownAll: this[_tearDownAll]});
+    }
+    [_checkNotBuilt](name) {
+      if (name == null) dart.nullFailed(I[7], 318, 30, "name");
+      if (!dart.test(this[_built])) return;
+      dart.throw(new core.StateError.new("Can't call " + dart.str(name) + "() once tests have begun running."));
+    }
+    [_runSetUps]() {
+      return async.async(dart.dynamic, (function* _runSetUps$() {
+        if (this[_parent$] != null) yield dart.nullCheck(this[_parent$])[_runSetUps]();
+        yield async.Future.forEach(core.Function, this[_setUps], dart.fn(setUp => {
+          if (setUp == null) dart.nullFailed(I[7], 330, 46, "setUp");
+          return dart.dcall(setUp, []);
+        }, T$.FunctionTodynamic()));
+      }).bind(this));
+    }
+    get [_setUpAll]() {
+      if (dart.test(this[_setUpAlls][$isEmpty])) return null;
+      return new invoker$.LocalTest.new(this[_prefix]("(setUpAll)"), this[_metadata$].change({timeout: this[_timeout]}), dart.fn(() => async.runZoned(async.Future, dart.fn(() => async.Future.forEach(core.Function, this[_setUpAlls], dart.fn(setUp => {
+        if (setUp == null) dart.nullFailed(I[7], 340, 55, "setUp");
+        return dart.dcall(setUp, []);
+      }, T$.FunctionTodynamic())), T$.VoidToFuture()), {zoneValues: new (T$.LinkedMapOfObjectN$ObjectN()).from([C[15] || CT.C15, this])}), T$.VoidToFuture()), {trace: this[_setUpAllTrace], guarded: false, isScaffoldAll: true});
+    }
+    get [_tearDownAll]() {
+      if (dart.test(this[_setUpAlls][$isEmpty]) && dart.test(this[_tearDownAlls][$isEmpty])) return null;
+      return new invoker$.LocalTest.new(this[_prefix]("(tearDownAll)"), this[_metadata$].change({timeout: this[_timeout]}), dart.fn(() => async.runZoned(T$.FutureOfNull(), dart.fn(() => dart.nullCheck(invoker$.Invoker.current).unclosable(T$.FutureOfNull(), dart.fn(() => async.async(core.Null, (function*() {
+        while (dart.test(this[_tearDownAlls][$isNotEmpty])) {
+          yield test$.errorsDontStopTest(this[_tearDownAlls][$removeLast]());
+        }
+      }).bind(this)), T$.VoidToFutureOfNull())), T$.VoidToFutureOfNull()), {zoneValues: new (T$.LinkedMapOfObjectN$ObjectN()).from([C[15] || CT.C15, this])}), T$.VoidToFutureOfNull()), {trace: this[_tearDownAllTrace], guarded: false, isScaffoldAll: true});
+    }
+  };
+  (declarer$.Declarer.new = function(opts) {
+    let t2, t2$;
+    let metadata = opts && 'metadata' in opts ? opts.metadata : null;
+    let platformVariables = opts && 'platformVariables' in opts ? opts.platformVariables : null;
+    let collectTraces = opts && 'collectTraces' in opts ? opts.collectTraces : false;
+    if (collectTraces == null) dart.nullFailed(I[7], 126, 12, "collectTraces");
+    let noRetry = opts && 'noRetry' in opts ? opts.noRetry : false;
+    if (noRetry == null) dart.nullFailed(I[7], 127, 12, "noRetry");
+    let fullTestName = opts && 'fullTestName' in opts ? opts.fullTestName : null;
+    declarer$.Declarer.__.call(this, null, null, (t2 = metadata, t2 == null ? metadata$.Metadata.new() : t2), (t2$ = platformVariables, t2$ == null ? C[14] || CT.C14 : t2$), collectTraces, null, noRetry, fullTestName);
+  }).prototype = declarer$.Declarer.prototype;
+  (declarer$.Declarer.__ = function(_parent, _name, _metadata, _platformVariables, _collectTraces, _trace, _noRetry, _fullTestName) {
+    if (_metadata == null) dart.nullFailed(I[7], 142, 10, "_metadata");
+    if (_platformVariables == null) dart.nullFailed(I[7], 143, 10, "_platformVariables");
+    if (_collectTraces == null) dart.nullFailed(I[7], 144, 10, "_collectTraces");
+    if (_noRetry == null) dart.nullFailed(I[7], 146, 10, "_noRetry");
+    this[_setUps] = T$.JSArrayOfVoidTodynamic().of([]);
+    this[_tearDowns$] = T$.JSArrayOfVoidTodynamic().of([]);
+    this[_setUpAlls] = T$.JSArrayOfVoidTodynamic().of([]);
+    this[_timeout] = new timeout.Timeout.new(new core.Duration.new({minutes: 12}));
+    this[_setUpAllTrace] = null;
+    this[_tearDownAlls] = T$.JSArrayOfVoidTodynamic().of([]);
+    this[_tearDownAllTrace] = null;
+    this[_entries] = T$.JSArrayOfGroupEntry().of([]);
+    this[_built] = false;
+    this[_soloEntries] = T$.JSArrayOfGroupEntry().of([]);
+    this[_parent$] = _parent;
+    this[_name$] = _name;
+    this[_metadata$] = _metadata;
+    this[_platformVariables$] = _platformVariables;
+    this[_collectTraces$] = _collectTraces;
+    this[_trace$] = _trace;
+    this[_noRetry$] = _noRetry;
+    this[_fullTestName$] = _fullTestName;
+    ;
+  }).prototype = declarer$.Declarer.prototype;
+  dart.addTypeTests(declarer$.Declarer);
+  dart.addTypeCaches(declarer$.Declarer);
+  dart.setMethodSignature(declarer$.Declarer, () => ({
+    __proto__: dart.getMethods(declarer$.Declarer.__proto__),
+    declare: dart.gFnType(T => [T, [dart.fnType(T, [])]], T => [dart.nullable(core.Object)]),
+    test: dart.fnType(dart.void, [core.String, dart.fnType(dart.dynamic, [])], {onPlatform: dart.nullable(core.Map$(core.String, dart.dynamic)), retry: dart.nullable(core.int), skip: dart.dynamic, solo: core.bool, tags: dart.dynamic, testOn: dart.nullable(core.String), timeout: dart.nullable(timeout.Timeout)}, {}),
+    group: dart.fnType(dart.void, [core.String, dart.fnType(dart.void, [])], {onPlatform: dart.nullable(core.Map$(core.String, dart.dynamic)), retry: dart.nullable(core.int), skip: dart.dynamic, solo: core.bool, tags: dart.dynamic, testOn: dart.nullable(core.String), timeout: dart.nullable(timeout.Timeout)}, {}),
+    [_prefix]: dart.fnType(core.String, [core.String]),
+    setUp: dart.fnType(dart.void, [dart.fnType(dart.dynamic, [])]),
+    tearDown: dart.fnType(dart.void, [dart.fnType(dart.dynamic, [])]),
+    setUpAll: dart.fnType(dart.void, [dart.fnType(dart.dynamic, [])]),
+    tearDownAll: dart.fnType(dart.void, [dart.fnType(dart.dynamic, [])]),
+    addTearDownAll: dart.fnType(dart.void, [dart.fnType(dart.dynamic, [])]),
+    build: dart.fnType(group.Group, []),
+    [_checkNotBuilt]: dart.fnType(dart.void, [core.String]),
+    [_runSetUps]: dart.fnType(async.Future, [])
+  }));
+  dart.setGetterSignature(declarer$.Declarer, () => ({
+    __proto__: dart.getGetters(declarer$.Declarer.__proto__),
+    [_solo]: core.bool,
+    [_setUpAll]: dart.nullable(test.Test),
+    [_tearDownAll]: dart.nullable(test.Test)
+  }));
+  dart.setLibraryUri(declarer$.Declarer, I[8]);
+  dart.setFieldSignature(declarer$.Declarer, () => ({
+    __proto__: dart.getFields(declarer$.Declarer.__proto__),
+    [_parent$]: dart.finalFieldType(dart.nullable(declarer$.Declarer)),
+    [_name$]: dart.finalFieldType(dart.nullable(core.String)),
+    [_metadata$]: dart.finalFieldType(metadata$.Metadata),
+    [_platformVariables$]: dart.finalFieldType(core.Set$(core.String)),
+    [_trace$]: dart.finalFieldType(dart.nullable(trace$.Trace)),
+    [_collectTraces$]: dart.finalFieldType(core.bool),
+    [_noRetry$]: dart.finalFieldType(core.bool),
+    [_setUps]: dart.finalFieldType(core.List$(dart.fnType(dart.dynamic, []))),
+    [_tearDowns$]: dart.finalFieldType(core.List$(dart.fnType(dart.dynamic, []))),
+    [_setUpAlls]: dart.finalFieldType(core.List$(dart.fnType(dart.dynamic, []))),
+    [_timeout]: dart.finalFieldType(timeout.Timeout),
+    [_setUpAllTrace]: dart.fieldType(dart.nullable(trace$.Trace)),
+    [_tearDownAlls]: dart.finalFieldType(core.List$(dart.fnType(dart.dynamic, []))),
+    [_tearDownAllTrace]: dart.fieldType(dart.nullable(trace$.Trace)),
+    [_entries]: dart.finalFieldType(core.List$(group_entry.GroupEntry)),
+    [_built]: dart.fieldType(core.bool),
+    [_soloEntries]: dart.finalFieldType(core.List$(group_entry.GroupEntry)),
+    [_fullTestName$]: dart.finalFieldType(dart.nullable(core.String))
+  }));
+  dart.trackLibraries("packages/test_api/src/frontend/async_matcher.dart", {
+    "package:test_api/src/frontend/async_matcher.dart": async_matcher,
+    "package:test_api/src/frontend/expect.dart": expect,
+    "package:test_api/src/backend/invoker.dart": invoker$,
+    "package:test_api/src/util/test.dart": test$,
+    "package:test_api/src/backend/declarer.dart": declarer$
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["async_matcher.dart","expect.dart","../backend/invoker.dart","../util/test.dart","../backend/declarer.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../E:/packages/test_api/src/frontend/async_matcher.dart.lib.js"}');
+  // Exports:
+  return {
+    src__frontend__async_matcher: async_matcher,
+    src__frontend__expect: expect,
+    src__backend__invoker: invoker$,
+    src__util__test: test$,
+    src__backend__declarer: declarer$
+  };
+}));
+
+//# sourceMappingURL=async_matcher.dart.lib.js.map

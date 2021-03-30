@@ -1,0 +1,4 @@
+#Tue Mar 30 15:32:43 EDT 2021
+base.0=E\:\\dev\\Flutter-twitter-clone\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

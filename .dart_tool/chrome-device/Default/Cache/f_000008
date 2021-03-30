@@ -1,0 +1,1601 @@
+define(['dart_sdk', 'packages/matcher/src/interfaces.dart', 'packages/stack_trace/src/stack_zone_specification.dart'], (function load__packages__matcher__src__equals_matcher_dart(dart_sdk, packages__matcher__src__interfaces$46dart, packages__stack_trace__src__stack_zone_specification$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
+  const collection = dart_sdk.collection;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const interfaces = packages__matcher__src__interfaces$46dart.src__interfaces;
+  const chain = packages__stack_trace__src__stack_zone_specification$46dart.src__chain;
+  const frame = packages__stack_trace__src__stack_zone_specification$46dart.src__frame;
+  var equals_matcher = Object.create(dart.library);
+  var util = Object.create(dart.library);
+  var pretty_print = Object.create(dart.library);
+  var description$ = Object.create(dart.library);
+  var custom_matcher = Object.create(dart.library);
+  var having_matcher = Object.create(dart.library);
+  var type_matcher = Object.create(dart.library);
+  var feature_matcher = Object.create(dart.library);
+  var core_matchers = Object.create(dart.library);
+  var $codeUnitAt = dartx.codeUnitAt;
+  var $substring = dartx.substring;
+  var $iterator = dartx.iterator;
+  var $toSet = dartx.toSet;
+  var $every = dartx.every;
+  var $length = dartx.length;
+  var $keys = dartx.keys;
+  var $containsKey = dartx.containsKey;
+  var $_get = dartx._get;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $clear = dartx.clear;
+  var $_set = dartx._set;
+  var $addAll = dartx.addAll;
+  var $replaceAll = dartx.replaceAll;
+  var $replaceAllMapped = dartx.replaceAllMapped;
+  var $single = dartx.single;
+  var $runes = dartx.runes;
+  var $toRadixString = dartx.toRadixString;
+  var $toUpperCase = dartx.toUpperCase;
+  var $padLeft = dartx.padLeft;
+  var $map = dartx.map;
+  var $join = dartx.join;
+  var $toList = dartx.toList;
+  var $replaceRange = dartx.replaceRange;
+  var $contains = dartx.contains;
+  var $split = dartx.split;
+  var $toString = dartx.toString;
+  var $startsWith = dartx.startsWith;
+  var $runtimeType = dartx.runtimeType;
+  var $add = dartx.add;
+  var $followedBy = dartx.followedBy;
+  var $noSuchMethod = dartx.noSuchMethod;
+  var $compareTo = dartx.compareTo;
+  var $any = dartx.any;
+  dart._checkModuleNullSafetyMode(true);
+  var T$ = {
+    dynamicTobool: () => (T$.dynamicTobool = dart.constFn(dart.fnType(core.bool, [dart.dynamic])))(),
+    DescriptionAndboolTovoid: () => (T$.DescriptionAndboolTovoid = dart.constFn(dart.fnType(dart.void, [interfaces.Description, core.bool])))(),
+    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    ObjectNTobool: () => (T$.ObjectNTobool = dart.constFn(dart.fnType(core.bool, [T$.ObjectN()])))(),
+    NeverTobool: () => (T$.NeverTobool = dart.constFn(dart.fnType(core.bool, [dart.Never])))(),
+    MatchToString: () => (T$.MatchToString = dart.constFn(dart.fnType(core.String, [core.Match])))(),
+    StringToString: () => (T$.StringToString = dart.constFn(dart.fnType(core.String, [core.String])))(),
+    LinkedHashSetOfObjectN: () => (T$.LinkedHashSetOfObjectN = dart.constFn(collection.LinkedHashSet$(T$.ObjectN())))(),
+    dynamicToString: () => (T$.dynamicToString = dart.constFn(dart.fnType(core.String, [dart.dynamic])))(),
+    JSArrayOfString: () => (T$.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
+    ExpandoOfObject: () => (T$.ExpandoOfObject = dart.constFn(core.Expando$(core.Object)))(),
+    SetOfObjectN: () => (T$.SetOfObjectN = dart.constFn(core.Set$(T$.ObjectN())))(),
+    dynamicAndintAndSetOfObjectN__ToString: () => (T$.dynamicAndintAndSetOfObjectN__ToString = dart.constFn(dart.fnType(core.String, [dart.dynamic, core.int, T$.SetOfObjectN(), core.bool])))(),
+    ListOfString: () => (T$.ListOfString = dart.constFn(core.List$(core.String)))(),
+    FrameTobool: () => (T$.FrameTobool = dart.constFn(dart.fnType(core.bool, [frame.Frame])))(),
+    JSArrayOfMatcher: () => (T$.JSArrayOfMatcher = dart.constFn(_interceptors.JSArray$(interfaces.Matcher)))(),
+    StringN: () => (T$.StringN = dart.constFn(dart.nullable(core.String)))(),
+    _InOfObjectN: () => (T$._InOfObjectN = dart.constFn(core_matchers._In$(T$.ObjectN())))(),
+    _InOfPattern: () => (T$._InOfPattern = dart.constFn(core_matchers._In$(core.Pattern)))(),
+    TypeMatcherOfMap: () => (T$.TypeMatcherOfMap = dart.constFn(type_matcher.TypeMatcher$(core.Map)))(),
+    TypeMatcherOfList: () => (T$.TypeMatcherOfList = dart.constFn(type_matcher.TypeMatcher$(core.List)))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T$);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.constMap(core.String, core.String, ["\n", "\\n", "\r", "\\r", "\f", "\\f", "\b", "\\b", "\t", "\\t", "\v", "\\v", "", "\\x7F"]);
+    },
+    get C1() {
+      return C[1] = dart.fn(util._getHexLiteral, T$.StringToString());
+    },
+    get C2() {
+      return C[2] = dart.fn(pretty_print._escapeString, T$.StringToString());
+    },
+    get C3() {
+      return C[3] = dart.const(new _js_helper.PrivateSymbol.new('_name', _name$0));
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: core_matchers._Empty.prototype
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: core_matchers._NotEmpty.prototype
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: core_matchers._IsNull.prototype
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: core_matchers._IsNotNull.prototype
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: core_matchers._IsTrue.prototype
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: core_matchers._IsFalse.prototype
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: core_matchers._IsNaN.prototype,
+        [_name]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: core_matchers._IsNotNaN.prototype,
+        [_name]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: core_matchers._IsAnything.prototype
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: core_matchers._ReturnsNormally.prototype,
+        [_name]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: T$.TypeMatcherOfMap().prototype,
+        [_name]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: T$.TypeMatcherOfList().prototype,
+        [_name]: null
+      });
+    }
+  }, false);
+  var C = Array(16).fill(void 0);
+  var I = [
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib/src/equals_matcher.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib/src/feature_matcher.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib/src/type_matcher.dart",
+    "package:matcher/src/type_matcher.dart",
+    "package:matcher/src/feature_matcher.dart",
+    "package:matcher/src/equals_matcher.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib/src/util.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib/src/pretty_print.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib/src/description.dart",
+    "package:matcher/src/description.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib/src/custom_matcher.dart",
+    "package:matcher/src/custom_matcher.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib/src/having_matcher.dart",
+    "package:matcher/src/having_matcher.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.10/lib/src/core_matchers.dart",
+    "package:matcher/src/core_matchers.dart"
+  ];
+  var _value$ = dart.privateName(equals_matcher, "_value");
+  var _name = dart.privateName(type_matcher, "TypeMatcher._name");
+  var _name$ = dart.privateName(type_matcher, "_name");
+  const _is_TypeMatcher_default = Symbol('_is_TypeMatcher_default');
+  type_matcher.TypeMatcher$ = dart.generic(T => {
+    var HavingMatcherOfT = () => (HavingMatcherOfT = dart.constFn(having_matcher.HavingMatcher$(T)))();
+    class TypeMatcher extends interfaces.Matcher {
+      get [_name$]() {
+        return this[_name];
+      }
+      set [_name$](value) {
+        super[_name$] = value;
+      }
+      having(feature, description, matcher) {
+        if (feature == null) dart.nullFailed(I[2], 83, 31, "feature");
+        if (description == null) dart.nullFailed(I[2], 83, 47, "description");
+        return new (HavingMatcherOfT()).new(this, description, feature, matcher);
+      }
+      describe(description) {
+        let t0;
+        if (description == null) dart.nullFailed(I[2], 87, 36, "description");
+        let name = (t0 = this[_name$], t0 == null ? type_matcher._stripDynamic(dart.wrapType(T)) : t0);
+        return description.add("<Instance of '" + dart.str(name) + "'>");
+      }
+      matches(item, matchState) {
+        if (matchState == null) dart.nullFailed(I[2], 93, 34, "matchState");
+        return T.is(item);
+      }
+      describeMismatch(item, mismatchDescription, matchState, verbose) {
+        let t0;
+        if (mismatchDescription == null) dart.nullFailed(I[2], 97, 25, "mismatchDescription");
+        if (matchState == null) dart.nullFailed(I[2], 97, 50, "matchState");
+        if (verbose == null) dart.nullFailed(I[2], 97, 67, "verbose");
+        let name = (t0 = this[_name$], t0 == null ? type_matcher._stripDynamic(dart.wrapType(T)) : t0);
+        return mismatchDescription.add("is not an instance of '" + dart.str(name) + "'");
+      }
+    }
+    (TypeMatcher.new = function(name = null) {
+      this[_name] = name;
+      TypeMatcher.__proto__.new.call(this);
+      ;
+    }).prototype = TypeMatcher.prototype;
+    dart.addTypeTests(TypeMatcher);
+    TypeMatcher.prototype[_is_TypeMatcher_default] = true;
+    dart.addTypeCaches(TypeMatcher);
+    dart.setMethodSignature(TypeMatcher, () => ({
+      __proto__: dart.getMethods(TypeMatcher.__proto__),
+      having: dart.fnType(type_matcher.TypeMatcher$(T), [dart.fnType(dart.nullable(core.Object), [T]), core.String, dart.dynamic]),
+      describe: dart.fnType(interfaces.Description, [interfaces.Description]),
+      matches: dart.fnType(core.bool, [dart.nullable(core.Object), core.Map])
+    }));
+    dart.setLibraryUri(TypeMatcher, I[3]);
+    dart.setFieldSignature(TypeMatcher, () => ({
+      __proto__: dart.getFields(TypeMatcher.__proto__),
+      [_name$]: dart.finalFieldType(dart.nullable(core.String))
+    }));
+    return TypeMatcher;
+  });
+  type_matcher.TypeMatcher = type_matcher.TypeMatcher$();
+  dart.addTypeTests(type_matcher.TypeMatcher, _is_TypeMatcher_default);
+  const _is_FeatureMatcher_default = Symbol('_is_FeatureMatcher_default');
+  feature_matcher.FeatureMatcher$ = dart.generic(T => {
+    class FeatureMatcher extends type_matcher.TypeMatcher$(T) {
+      matches(item, matchState) {
+        if (matchState == null) dart.nullFailed(I[1], 15, 26, "matchState");
+        return dart.test(super.matches(item, matchState)) && dart.test(this.typedMatches(T.as(item), matchState));
+      }
+      describeMismatch(item, mismatchDescription, matchState, verbose) {
+        if (mismatchDescription == null) dart.nullFailed(I[1], 22, 25, "mismatchDescription");
+        if (matchState == null) dart.nullFailed(I[1], 22, 50, "matchState");
+        if (verbose == null) dart.nullFailed(I[1], 22, 67, "verbose");
+        if (T.is(item)) {
+          return this.describeTypedMismatch(item, mismatchDescription, matchState, verbose);
+        }
+        return super.describe(mismatchDescription.add("not an "));
+      }
+      describeTypedMismatch(item, mismatchDescription, matchState, verbose) {
+        T.as(item);
+        if (mismatchDescription == null) dart.nullFailed(I[1], 31, 57, "mismatchDescription");
+        if (matchState == null) dart.nullFailed(I[1], 32, 15, "matchState");
+        if (verbose == null) dart.nullFailed(I[1], 32, 32, "verbose");
+        return mismatchDescription;
+      }
+    }
+    (FeatureMatcher.new = function() {
+      FeatureMatcher.__proto__.new.call(this);
+      ;
+    }).prototype = FeatureMatcher.prototype;
+    dart.addTypeTests(FeatureMatcher);
+    FeatureMatcher.prototype[_is_FeatureMatcher_default] = true;
+    dart.addTypeCaches(FeatureMatcher);
+    dart.setMethodSignature(FeatureMatcher, () => ({
+      __proto__: dart.getMethods(FeatureMatcher.__proto__),
+      describeTypedMismatch: dart.fnType(interfaces.Description, [dart.nullable(core.Object), interfaces.Description, core.Map, core.bool])
+    }));
+    dart.setLibraryUri(FeatureMatcher, I[4]);
+    return FeatureMatcher;
+  });
+  feature_matcher.FeatureMatcher = feature_matcher.FeatureMatcher$();
+  dart.addTypeTests(feature_matcher.FeatureMatcher, _is_FeatureMatcher_default);
+  equals_matcher._StringEqualsMatcher = class _StringEqualsMatcher extends feature_matcher.FeatureMatcher$(core.String) {
+    typedMatches(item, matchState) {
+      core.String.as(item);
+      if (item == null) dart.nullFailed(I[0], 31, 28, "item");
+      if (matchState == null) dart.nullFailed(I[0], 31, 38, "matchState");
+      return this[_value$] == item;
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[0], 34, 36, "description");
+      return description.addDescriptionOf(this[_value$]);
+    }
+    describeTypedMismatch(item, mismatchDescription, matchState, verbose) {
+      core.String.as(item);
+      if (item == null) dart.nullFailed(I[0], 38, 44, "item");
+      if (mismatchDescription == null) dart.nullFailed(I[0], 39, 19, "mismatchDescription");
+      if (matchState == null) dart.nullFailed(I[0], 39, 44, "matchState");
+      if (verbose == null) dart.nullFailed(I[0], 39, 61, "verbose");
+      let buff = new core.StringBuffer.new();
+      buff.write("is different.");
+      let escapedItem = util.escape(item);
+      let escapedValue = util.escape(this[_value$]);
+      let minLength = escapedItem.length < escapedValue.length ? escapedItem.length : escapedValue.length;
+      let start = 0;
+      for (; start < minLength; start = start + 1) {
+        if (escapedValue[$codeUnitAt](start) !== escapedItem[$codeUnitAt](start)) {
+          break;
+        }
+      }
+      if (start === minLength) {
+        if (escapedValue.length < escapedItem.length) {
+          buff.write(" Both strings start the same, but the actual value also" + " has the following trailing characters: ");
+          equals_matcher._StringEqualsMatcher._writeTrailing(buff, escapedItem, escapedValue.length);
+        } else {
+          buff.write(" Both strings start the same, but the actual value is" + " missing the following trailing characters: ");
+          equals_matcher._StringEqualsMatcher._writeTrailing(buff, escapedValue, escapedItem.length);
+        }
+      } else {
+        buff.write("\nExpected: ");
+        equals_matcher._StringEqualsMatcher._writeLeading(buff, escapedValue, start);
+        equals_matcher._StringEqualsMatcher._writeTrailing(buff, escapedValue, start);
+        buff.write("\n  Actual: ");
+        equals_matcher._StringEqualsMatcher._writeLeading(buff, escapedItem, start);
+        equals_matcher._StringEqualsMatcher._writeTrailing(buff, escapedItem, start);
+        buff.write("\n          ");
+        for (let i = start > 10 ? 14 : start; i > 0; i = i - 1) {
+          buff.write(" ");
+        }
+        buff.write("^\n Differ at offset " + dart.str(start));
+      }
+      return mismatchDescription.add(buff.toString());
+    }
+    static _writeLeading(buff, s, start) {
+      if (buff == null) dart.nullFailed(I[0], 80, 42, "buff");
+      if (s == null) dart.nullFailed(I[0], 80, 55, "s");
+      if (start == null) dart.nullFailed(I[0], 80, 62, "start");
+      if (dart.notNull(start) > 10) {
+        buff.write("... ");
+        buff.write(s[$substring](dart.notNull(start) - 10, start));
+      } else {
+        buff.write(s[$substring](0, start));
+      }
+    }
+    static _writeTrailing(buff, s, start) {
+      if (buff == null) dart.nullFailed(I[0], 89, 43, "buff");
+      if (s == null) dart.nullFailed(I[0], 89, 56, "s");
+      if (start == null) dart.nullFailed(I[0], 89, 63, "start");
+      if (dart.notNull(start) + 10 > s.length) {
+        buff.write(s[$substring](start));
+      } else {
+        buff.write(s[$substring](start, dart.notNull(start) + 10));
+        buff.write(" ...");
+      }
+    }
+  };
+  (equals_matcher._StringEqualsMatcher.new = function(_value) {
+    if (_value == null) dart.nullFailed(I[0], 28, 29, "_value");
+    this[_value$] = _value;
+    equals_matcher._StringEqualsMatcher.__proto__.new.call(this);
+    ;
+  }).prototype = equals_matcher._StringEqualsMatcher.prototype;
+  dart.addTypeTests(equals_matcher._StringEqualsMatcher);
+  dart.addTypeCaches(equals_matcher._StringEqualsMatcher);
+  dart.setMethodSignature(equals_matcher._StringEqualsMatcher, () => ({
+    __proto__: dart.getMethods(equals_matcher._StringEqualsMatcher.__proto__),
+    typedMatches: dart.fnType(core.bool, [dart.nullable(core.Object), core.Map])
+  }));
+  dart.setLibraryUri(equals_matcher._StringEqualsMatcher, I[5]);
+  dart.setFieldSignature(equals_matcher._StringEqualsMatcher, () => ({
+    __proto__: dart.getFields(equals_matcher._StringEqualsMatcher.__proto__),
+    [_value$]: dart.finalFieldType(core.String)
+  }));
+  var _expected$ = dart.privateName(equals_matcher, "_expected");
+  var _limit = dart.privateName(equals_matcher, "_limit");
+  var _compareIterables = dart.privateName(equals_matcher, "_compareIterables");
+  var _compareSets = dart.privateName(equals_matcher, "_compareSets");
+  var _recursiveMatch = dart.privateName(equals_matcher, "_recursiveMatch");
+  equals_matcher._DeepMatcher = class _DeepMatcher extends interfaces.Matcher {
+    [_compareIterables](expected, actual, matcher, depth, location) {
+      if (expected == null) dart.nullFailed(I[0], 105, 41, "expected");
+      if (matcher == null) dart.nullFailed(I[0], 106, 25, "matcher");
+      if (depth == null) dart.nullFailed(I[0], 106, 38, "depth");
+      if (location == null) dart.nullFailed(I[0], 106, 52, "location");
+      if (core.Iterable.is(actual)) {
+        let expectedIterator = expected[$iterator];
+        let actualIterator = actual[$iterator];
+        for (let index = 0;; index = index + 1) {
+          let expectedNext = expectedIterator.moveNext();
+          let actualNext = actualIterator.moveNext();
+          if (!dart.test(expectedNext) && !dart.test(actualNext)) return null;
+          let newLocation = dart.str(location) + "[" + dart.str(index) + "]";
+          if (!dart.test(expectedNext)) {
+            return new equals_matcher._Mismatch.simple(newLocation, actual, "longer than expected");
+          }
+          if (!dart.test(actualNext)) {
+            return new equals_matcher._Mismatch.simple(newLocation, actual, "shorter than expected");
+          }
+          let rp = matcher(expectedIterator.current, actualIterator.current, newLocation, depth);
+          if (rp != null) return rp;
+        }
+      } else {
+        return new equals_matcher._Mismatch.simple(location, actual, "is not Iterable");
+      }
+    }
+    [_compareSets](expected, actual, matcher, depth, location) {
+      if (expected == null) dart.nullFailed(I[0], 137, 31, "expected");
+      if (matcher == null) dart.nullFailed(I[0], 138, 25, "matcher");
+      if (depth == null) dart.nullFailed(I[0], 138, 38, "depth");
+      if (location == null) dart.nullFailed(I[0], 138, 52, "location");
+      if (core.Iterable.is(actual)) {
+        let other = actual[$toSet]();
+        for (let expectedElement of expected) {
+          if (dart.test(other[$every](dart.fn(actualElement => matcher(expectedElement, actualElement, location, depth) != null, T$.dynamicTobool())))) {
+            return new equals_matcher._Mismatch.new(location, actual, dart.fn((description, verbose) => {
+              if (description == null) dart.nullFailed(I[0], 148, 16, "description");
+              if (verbose == null) dart.nullFailed(I[0], 148, 29, "verbose");
+              return description.add("does not contain ").addDescriptionOf(expectedElement);
+            }, T$.DescriptionAndboolTovoid()));
+          }
+        }
+        if (dart.notNull(other[$length]) > dart.notNull(expected[$length])) {
+          return new equals_matcher._Mismatch.simple(location, actual, "larger than expected");
+        } else if (dart.notNull(other[$length]) < dart.notNull(expected[$length])) {
+          return new equals_matcher._Mismatch.simple(location, actual, "smaller than expected");
+        } else {
+          return null;
+        }
+      } else {
+        return new equals_matcher._Mismatch.simple(location, actual, "is not Iterable");
+      }
+    }
+    [_recursiveMatch](expected, actual, location, depth) {
+      if (location == null) dart.nullFailed(I[0], 167, 48, "location");
+      if (depth == null) dart.nullFailed(I[0], 167, 62, "depth");
+      if (interfaces.Matcher.is(expected)) {
+        let matchState = new _js_helper.LinkedMap.new();
+        if (dart.test(expected.matches(actual, matchState))) return null;
+        return new equals_matcher._Mismatch.new(location, actual, dart.fn((description, verbose) => {
+          if (description == null) dart.nullFailed(I[0], 172, 43, "description");
+          if (verbose == null) dart.nullFailed(I[0], 172, 56, "verbose");
+          let oldLength = description.length;
+          expected.describeMismatch(actual, description, matchState, verbose);
+          if (dart.notNull(depth) > 0 && description.length == oldLength) {
+            description.add("does not match ");
+            expected.describe(description);
+          }
+        }, T$.DescriptionAndboolTovoid()));
+      } else {
+        try {
+          if (dart.equals(expected, actual)) return null;
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            return new equals_matcher._Mismatch.new(location, actual, dart.fn((description, verbose) => {
+              if (description == null) dart.nullFailed(I[0], 189, 14, "description");
+              if (verbose == null) dart.nullFailed(I[0], 189, 27, "verbose");
+              return description.add("== threw ").addDescriptionOf(e);
+            }, T$.DescriptionAndboolTovoid()));
+          } else
+            throw e$;
+        }
+      }
+      if (dart.notNull(depth) > dart.notNull(this[_limit])) {
+        return new equals_matcher._Mismatch.simple(location, actual, "recursion depth limit exceeded");
+      }
+      if (depth === 0 || dart.notNull(this[_limit]) > 1) {
+        if (core.Set.is(expected)) {
+          return this[_compareSets](expected, actual, dart.bind(this, _recursiveMatch), dart.notNull(depth) + 1, location);
+        } else if (core.Iterable.is(expected)) {
+          return this[_compareIterables](expected, actual, dart.bind(this, _recursiveMatch), dart.notNull(depth) + 1, location);
+        } else if (core.Map.is(expected)) {
+          if (!core.Map.is(actual)) {
+            return new equals_matcher._Mismatch.simple(location, actual, "expected a map");
+          }
+          let err = expected[$length] == actual[$length] ? "" : "has different length and ";
+          for (let key of expected[$keys]) {
+            if (!dart.test(actual[$containsKey](key))) {
+              return new equals_matcher._Mismatch.new(location, actual, dart.fn((description, verbose) => {
+                if (description == null) dart.nullFailed(I[0], 219, 18, "description");
+                if (verbose == null) dart.nullFailed(I[0], 219, 31, "verbose");
+                return description.add(err + "is missing map key ").addDescriptionOf(key);
+              }, T$.DescriptionAndboolTovoid()));
+            }
+          }
+          for (let key of actual[$keys]) {
+            if (!dart.test(expected[$containsKey](key))) {
+              return new equals_matcher._Mismatch.new(location, actual, dart.fn((description, verbose) => {
+                if (description == null) dart.nullFailed(I[0], 230, 18, "description");
+                if (verbose == null) dart.nullFailed(I[0], 230, 31, "verbose");
+                return description.add(err + "has extra map key ").addDescriptionOf(key);
+              }, T$.DescriptionAndboolTovoid()));
+            }
+          }
+          for (let key of expected[$keys]) {
+            let rp = this[_recursiveMatch](expected[$_get](key), actual[$_get](key), dart.str(location) + "['" + dart.str(key) + "']", dart.notNull(depth) + 1);
+            if (rp != null) return rp;
+          }
+          return null;
+        }
+      }
+      if (dart.notNull(depth) > 0) {
+        return new equals_matcher._Mismatch.new(location, actual, dart.fn((description, verbose) => {
+          if (description == null) dart.nullFailed(I[0], 250, 12, "description");
+          if (verbose == null) dart.nullFailed(I[0], 250, 25, "verbose");
+          return description.addDescriptionOf(expected);
+        }, T$.DescriptionAndboolTovoid()), {instead: true});
+      } else {
+        return new equals_matcher._Mismatch.new(location, actual, null);
+      }
+    }
+    matches(actual, matchState) {
+      if (matchState == null) dart.nullFailed(I[0], 258, 36, "matchState");
+      let mismatch = this[_recursiveMatch](this[_expected$], actual, "", 0);
+      if (mismatch == null) return true;
+      util.addStateInfo(matchState, new _js_helper.LinkedMap.from(["mismatch", mismatch]));
+      return false;
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[0], 266, 36, "description");
+      return description.addDescriptionOf(this[_expected$]);
+    }
+    describeMismatch(item, mismatchDescription, matchState, verbose) {
+      if (mismatchDescription == null) dart.nullFailed(I[0], 271, 25, "mismatchDescription");
+      if (matchState == null) dart.nullFailed(I[0], 271, 50, "matchState");
+      if (verbose == null) dart.nullFailed(I[0], 271, 67, "verbose");
+      let mismatch = equals_matcher._Mismatch.as(matchState[$_get]("mismatch"));
+      let describeProblem = mismatch.describeProblem;
+      if (mismatch.location[$isNotEmpty]) {
+        mismatchDescription.add("at location ").add(mismatch.location).add(" is ").addDescriptionOf(mismatch.actual);
+        if (describeProblem != null) {
+          mismatchDescription.add(" " + (dart.test(mismatch.instead) ? "instead of" : "which") + " ");
+          describeProblem(mismatchDescription, verbose);
+        }
+      } else {
+        if (describeProblem == null) {
+          if (dart.notNull(mismatchDescription.length) > 0) {
+            mismatchDescription.add("is ").addDescriptionOf(item);
+          }
+        } else {
+          describeProblem(mismatchDescription, verbose);
+        }
+      }
+      return mismatchDescription;
+    }
+  };
+  (equals_matcher._DeepMatcher.new = function(_expected, limit = 1000) {
+    if (limit == null) dart.nullFailed(I[0], 103, 37, "limit");
+    this[_expected$] = _expected;
+    this[_limit] = limit;
+    equals_matcher._DeepMatcher.__proto__.new.call(this);
+    ;
+  }).prototype = equals_matcher._DeepMatcher.prototype;
+  dart.addTypeTests(equals_matcher._DeepMatcher);
+  dart.addTypeCaches(equals_matcher._DeepMatcher);
+  dart.setMethodSignature(equals_matcher._DeepMatcher, () => ({
+    __proto__: dart.getMethods(equals_matcher._DeepMatcher.__proto__),
+    [_compareIterables]: dart.fnType(dart.nullable(equals_matcher._Mismatch), [core.Iterable, dart.nullable(core.Object), dart.fnType(dart.nullable(equals_matcher._Mismatch), [dart.nullable(core.Object), dart.nullable(core.Object), core.String, core.int]), core.int, core.String]),
+    [_compareSets]: dart.fnType(dart.nullable(equals_matcher._Mismatch), [core.Set, dart.nullable(core.Object), dart.fnType(dart.nullable(equals_matcher._Mismatch), [dart.nullable(core.Object), dart.nullable(core.Object), core.String, core.int]), core.int, core.String]),
+    [_recursiveMatch]: dart.fnType(dart.nullable(equals_matcher._Mismatch), [dart.nullable(core.Object), dart.nullable(core.Object), core.String, core.int]),
+    matches: dart.fnType(core.bool, [dart.nullable(core.Object), core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(equals_matcher._DeepMatcher, I[5]);
+  dart.setFieldSignature(equals_matcher._DeepMatcher, () => ({
+    __proto__: dart.getFields(equals_matcher._DeepMatcher.__proto__),
+    [_expected$]: dart.finalFieldType(dart.nullable(core.Object)),
+    [_limit]: dart.finalFieldType(core.int)
+  }));
+  equals_matcher._Mismatch = class _Mismatch extends core.Object {};
+  (equals_matcher._Mismatch.new = function(location, actual, describeProblem, opts) {
+    if (location == null) dart.nullFailed(I[0], 321, 18, "location");
+    let instead = opts && 'instead' in opts ? opts.instead : false;
+    if (instead == null) dart.nullFailed(I[0], 322, 13, "instead");
+    this.location = location;
+    this.actual = actual;
+    this.describeProblem = describeProblem;
+    this.instead = instead;
+    ;
+  }).prototype = equals_matcher._Mismatch.prototype;
+  (equals_matcher._Mismatch.simple = function(location, actual, problem, opts) {
+    if (location == null) dart.nullFailed(I[0], 324, 25, "location");
+    if (problem == null) dart.nullFailed(I[0], 324, 55, "problem");
+    let instead = opts && 'instead' in opts ? opts.instead : false;
+    if (instead == null) dart.nullFailed(I[0], 325, 13, "instead");
+    this.location = location;
+    this.actual = actual;
+    this.instead = instead;
+    this.describeProblem = dart.fn((description, verbose) => {
+      if (description == null) dart.nullFailed(I[0], 326, 29, "description");
+      if (verbose == null) dart.nullFailed(I[0], 326, 42, "verbose");
+      return description.add(problem);
+    }, T$.DescriptionAndboolTovoid());
+    ;
+  }).prototype = equals_matcher._Mismatch.prototype;
+  dart.addTypeTests(equals_matcher._Mismatch);
+  dart.addTypeCaches(equals_matcher._Mismatch);
+  dart.setLibraryUri(equals_matcher._Mismatch, I[5]);
+  dart.setFieldSignature(equals_matcher._Mismatch, () => ({
+    __proto__: dart.getFields(equals_matcher._Mismatch.__proto__),
+    location: dart.finalFieldType(core.String),
+    actual: dart.finalFieldType(dart.nullable(core.Object)),
+    describeProblem: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [interfaces.Description, core.bool]))),
+    instead: dart.finalFieldType(core.bool)
+  }));
+  equals_matcher.equals = function equals(expected, limit = 100) {
+    if (limit == null) dart.nullFailed(I[0], 18, 31, "limit");
+    return typeof expected == 'string' ? new equals_matcher._StringEqualsMatcher.new(expected) : new equals_matcher._DeepMatcher.new(expected, limit);
+  };
+  util.addStateInfo = function addStateInfo(matchState, values) {
+    if (matchState == null) dart.nullFailed(I[6], 25, 23, "matchState");
+    if (values == null) dart.nullFailed(I[6], 25, 39, "values");
+    let innerState = collection.LinkedHashMap.from(matchState);
+    matchState[$clear]();
+    matchState[$_set]("state", innerState);
+    matchState[$addAll](values);
+  };
+  util.wrapMatcher = function wrapMatcher(x) {
+    if (interfaces.Matcher.is(x)) {
+      return x;
+    } else if (T$.ObjectNTobool().is(x)) {
+      return core_matchers.predicate(T$.ObjectN(), x);
+    } else if (T$.NeverTobool().is(x)) {
+      return core_matchers.predicate(T$.ObjectN(), dart.fn(a => core.bool.as(dart.dcall(x, [a])), T$.ObjectNTobool()));
+    } else {
+      return equals_matcher.equals(x);
+    }
+  };
+  util.escape = function escape(str) {
+    if (str == null) dart.nullFailed(I[6], 57, 22, "str");
+    str = str[$replaceAll]("\\", "\\\\");
+    return str[$replaceAllMapped](util._escapeRegExp, dart.fn(match => {
+      if (match == null) dart.nullFailed(I[6], 59, 47, "match");
+      let mapped = util._escapeMap[$_get](match._get(0));
+      if (mapped != null) return mapped;
+      return util._getHexLiteral(dart.nullCheck(match._get(0)));
+    }, T$.MatchToString()));
+  };
+  util._getHexLiteral = function _getHexLiteral(input) {
+    if (input == null) dart.nullFailed(I[6], 67, 30, "input");
+    let rune = input[$runes][$single];
+    return "\\x" + rune[$toRadixString](16)[$toUpperCase]()[$padLeft](2, "0");
+  };
+  dart.defineLazy(util, {
+    /*util._escapeMap*/get _escapeMap() {
+      return C[0] || CT.C0;
+    },
+    /*util._escapeRegExp*/get _escapeRegExp() {
+      return core.RegExp.new("[\\x00-\\x07\\x0E-\\x1F" + dart.str(util._escapeMap[$keys][$map](core.String, C[1] || CT.C1)[$join]()) + "]");
+    }
+  }, false);
+  pretty_print.prettyPrint = function prettyPrint(object, opts) {
+    let maxLineLength = opts && 'maxLineLength' in opts ? opts.maxLineLength : null;
+    let maxItems = opts && 'maxItems' in opts ? opts.maxItems : null;
+    function _prettyPrint(object, indent, seen, top) {
+      if (indent == null) dart.nullFailed(I[7], 19, 35, "indent");
+      if (seen == null) dart.nullFailed(I[7], 19, 56, "seen");
+      if (top == null) dart.nullFailed(I[7], 19, 67, "top");
+      if (interfaces.Matcher.is(object)) {
+        let description = new description$.StringDescription.new();
+        object.describe(description);
+        return "<" + dart.str(description) + ">";
+      }
+      if (dart.test(seen.contains(object))) return "(recursive)";
+      seen = seen.union(T$.LinkedHashSetOfObjectN().from([object]));
+      function pp(child) {
+        return _prettyPrint(child, dart.notNull(indent) + 2, seen, false);
+      }
+      dart.fn(pp, T$.dynamicToString());
+      if (core.Iterable.is(object)) {
+        let type = core.List.is(object) ? "" : dart.notNull(pretty_print._typeName(object)) + ":";
+        let strings = object[$map](core.String, pp)[$toList]();
+        if (maxItems != null && dart.notNull(strings[$length]) > dart.notNull(maxItems)) {
+          strings[$replaceRange](dart.notNull(maxItems) - 1, strings[$length], T$.JSArrayOfString().of(["..."]));
+        }
+        let singleLine = type + "[" + dart.str(strings[$join](", ")) + "]";
+        if ((maxLineLength == null || singleLine.length + dart.notNull(indent) <= dart.notNull(maxLineLength)) && !singleLine[$contains]("\n")) {
+          return singleLine;
+        }
+        return type + "[\n" + dart.notNull(strings[$map](core.String, dart.fn(string => {
+          if (string == null) dart.nullFailed(I[7], 53, 24, "string");
+          return dart.notNull(pretty_print._indent(dart.notNull(indent) + 2)) + dart.notNull(string);
+        }, T$.StringToString()))[$join](",\n")) + "\n" + dart.notNull(pretty_print._indent(indent)) + "]";
+      } else if (core.Map.is(object)) {
+        let strings = object[$keys][$map](core.String, dart.fn(key => dart.str(pp(key)) + ": " + dart.str(pp(object[$_get](key))), T$.dynamicToString()))[$toList]();
+        if (maxItems != null && dart.notNull(strings[$length]) > dart.notNull(maxItems)) {
+          strings[$replaceRange](dart.notNull(maxItems) - 1, strings[$length], T$.JSArrayOfString().of(["..."]));
+        }
+        let singleLine = "{" + dart.str(strings[$join](", ")) + "}";
+        if ((maxLineLength == null || singleLine.length + dart.notNull(indent) <= dart.notNull(maxLineLength)) && !singleLine[$contains]("\n")) {
+          return singleLine;
+        }
+        return "{\n" + dart.notNull(strings[$map](core.String, dart.fn(string => {
+          if (string == null) dart.nullFailed(I[7], 81, 24, "string");
+          return dart.notNull(pretty_print._indent(dart.notNull(indent) + 2)) + dart.notNull(string);
+        }, T$.StringToString()))[$join](",\n")) + "\n" + dart.notNull(pretty_print._indent(indent)) + "}";
+      } else if (typeof object == 'string') {
+        let lines = object[$split]("\n");
+        return "'" + dart.notNull(lines[$map](core.String, C[2] || CT.C2)[$join]("\\n'\n" + dart.str(pretty_print._indent(dart.notNull(indent) + 2)) + "'")) + "'";
+      } else {
+        let value = dart.toString(object)[$replaceAll]("\n", dart.notNull(pretty_print._indent(indent)) + "\n");
+        let defaultToString = value[$startsWith]("Instance of ");
+        if (dart.test(top)) value = "<" + value + ">";
+        if (typeof object == 'number' || typeof object == 'boolean' || core.Function.is(object) || core.RegExp.is(object) || core.MapEntry.is(object) || T$.ExpandoOfObject().is(object) || object == null || defaultToString) {
+          return value;
+        } else {
+          return dart.str(pretty_print._typeName(object)) + ":" + value;
+        }
+      }
+    }
+    dart.fn(_prettyPrint, T$.dynamicAndintAndSetOfObjectN__ToString());
+    return _prettyPrint(object, 0, T$.LinkedHashSetOfObjectN().new(), true);
+  };
+  pretty_print._indent = function _indent(length) {
+    if (length == null) dart.nullFailed(I[7], 122, 20, "length");
+    return T$.ListOfString().filled(length, " ")[$join]("");
+  };
+  pretty_print._typeName = function _typeName(x) {
+    if (core.Type.is(x)) return "Type";
+    if (core.Uri.is(x)) return "Uri";
+    if (core.Set.is(x)) return "Set";
+    if (core.BigInt.is(x)) return "BigInt";
+    return dart.str(dart.runtimeType(x));
+  };
+  pretty_print._escapeString = function _escapeString(source) {
+    if (source == null) dart.nullFailed(I[7], 139, 29, "source");
+    return util.escape(source)[$replaceAll]("'", "\\'");
+  };
+  var _out = dart.privateName(description$, "_out");
+  description$.StringDescription = class StringDescription extends core.Object {
+    get length() {
+      return this[_out].length;
+    }
+    toString() {
+      return dart.toString(this[_out]);
+    }
+    add(text) {
+      if (text == null) dart.nullFailed(I[8], 28, 26, "text");
+      this[_out].write(text);
+      return this;
+    }
+    replace(text) {
+      if (text == null) dart.nullFailed(I[8], 35, 30, "text");
+      this[_out].clear();
+      return this.add(text);
+    }
+    addDescriptionOf(value) {
+      if (interfaces.Matcher.is(value)) {
+        value.describe(this);
+      } else {
+        this.add(pretty_print.prettyPrint(value, {maxLineLength: 80, maxItems: 25}));
+      }
+      return this;
+    }
+    addAll(start, separator, end, list) {
+      if (start == null) dart.nullFailed(I[8], 59, 14, "start");
+      if (separator == null) dart.nullFailed(I[8], 59, 28, "separator");
+      if (end == null) dart.nullFailed(I[8], 59, 46, "end");
+      if (list == null) dart.nullFailed(I[8], 59, 60, "list");
+      let separate = false;
+      this.add(start);
+      for (let item of list) {
+        if (separate) {
+          this.add(separator);
+        }
+        this.addDescriptionOf(item);
+        separate = true;
+      }
+      this.add(end);
+      return this;
+    }
+  };
+  (description$.StringDescription.new = function(init = "") {
+    if (init == null) dart.nullFailed(I[8], 15, 29, "init");
+    this[_out] = new core.StringBuffer.new();
+    this[_out].write(init);
+  }).prototype = description$.StringDescription.prototype;
+  dart.addTypeTests(description$.StringDescription);
+  dart.addTypeCaches(description$.StringDescription);
+  description$.StringDescription[dart.implements] = () => [interfaces.Description];
+  dart.setMethodSignature(description$.StringDescription, () => ({
+    __proto__: dart.getMethods(description$.StringDescription.__proto__),
+    add: dart.fnType(interfaces.Description, [core.String]),
+    replace: dart.fnType(interfaces.Description, [core.String]),
+    addDescriptionOf: dart.fnType(interfaces.Description, [dart.dynamic]),
+    addAll: dart.fnType(interfaces.Description, [core.String, core.String, core.String, core.Iterable])
+  }));
+  dart.setGetterSignature(description$.StringDescription, () => ({
+    __proto__: dart.getGetters(description$.StringDescription.__proto__),
+    length: core.int
+  }));
+  dart.setLibraryUri(description$.StringDescription, I[9]);
+  dart.setFieldSignature(description$.StringDescription, () => ({
+    __proto__: dart.getFields(description$.StringDescription.__proto__),
+    [_out]: dart.finalFieldType(core.StringBuffer)
+  }));
+  dart.defineExtensionMethods(description$.StringDescription, ['toString']);
+  var _featureDescription$ = dart.privateName(custom_matcher, "_featureDescription");
+  var _featureName$ = dart.privateName(custom_matcher, "_featureName");
+  var _matcher = dart.privateName(custom_matcher, "_matcher");
+  custom_matcher.CustomMatcher = class CustomMatcher extends interfaces.Matcher {
+    featureValueOf(actual) {
+      return actual;
+    }
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[10], 45, 26, "matchState");
+      try {
+        let f = this.featureValueOf(item);
+        if (dart.test(this[_matcher].matches(f, matchState))) return true;
+        util.addStateInfo(matchState, new _js_helper.LinkedMap.from(["custom.feature", f]));
+      } catch (e) {
+        let exception = dart.getThrown(e);
+        let stack = dart.stackTrace(e);
+        if (core.Object.is(exception)) {
+          util.addStateInfo(matchState, new _js_helper.LinkedMap.from(["custom.exception", dart.toString(exception), "custom.stack", dart.toString(chain.Chain.forTrace(stack).foldFrames(dart.fn(frame => {
+              if (frame == null) dart.nullFailed(I[10], 55, 18, "frame");
+              return frame.package === "test" || frame.package === "stream_channel" || frame.package === "matcher";
+            }, T$.FrameTobool()), {terse: true}))]));
+        } else
+          throw e;
+      }
+      return false;
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[10], 67, 36, "description");
+      return description.add(this[_featureDescription$]).add(" ").addDescriptionOf(this[_matcher]);
+    }
+    describeMismatch(item, mismatchDescription, matchState, verbose) {
+      if (mismatchDescription == null) dart.nullFailed(I[10], 72, 25, "mismatchDescription");
+      if (matchState == null) dart.nullFailed(I[10], 72, 50, "matchState");
+      if (verbose == null) dart.nullFailed(I[10], 72, 67, "verbose");
+      if (matchState[$_get]("custom.exception") != null) {
+        mismatchDescription.add("threw ").addDescriptionOf(matchState[$_get]("custom.exception")).add("\n").add(dart.toString(matchState[$_get]("custom.stack")));
+        return mismatchDescription;
+      }
+      mismatchDescription.add("has ").add(this[_featureName$]).add(" with value ").addDescriptionOf(matchState[$_get]("custom.feature"));
+      let innerDescription = new description$.StringDescription.new();
+      this[_matcher].describeMismatch(matchState[$_get]("custom.feature"), innerDescription, core.Map.as(matchState[$_get]("state")), verbose);
+      if (dart.notNull(innerDescription.length) > 0) {
+        mismatchDescription.add(" which ").add(innerDescription.toString());
+      }
+      return mismatchDescription;
+    }
+  };
+  (custom_matcher.CustomMatcher.new = function(_featureDescription, _featureName, matcher) {
+    if (_featureDescription == null) dart.nullFailed(I[10], 38, 22, "_featureDescription");
+    if (_featureName == null) dart.nullFailed(I[10], 38, 48, "_featureName");
+    this[_featureDescription$] = _featureDescription;
+    this[_featureName$] = _featureName;
+    this[_matcher] = util.wrapMatcher(matcher);
+    custom_matcher.CustomMatcher.__proto__.new.call(this);
+    ;
+  }).prototype = custom_matcher.CustomMatcher.prototype;
+  dart.addTypeTests(custom_matcher.CustomMatcher);
+  dart.addTypeCaches(custom_matcher.CustomMatcher);
+  dart.setMethodSignature(custom_matcher.CustomMatcher, () => ({
+    __proto__: dart.getMethods(custom_matcher.CustomMatcher.__proto__),
+    featureValueOf: dart.fnType(dart.nullable(core.Object), [dart.dynamic]),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(custom_matcher.CustomMatcher, I[11]);
+  dart.setFieldSignature(custom_matcher.CustomMatcher, () => ({
+    __proto__: dart.getFields(custom_matcher.CustomMatcher.__proto__),
+    [_featureDescription$]: dart.finalFieldType(core.String),
+    [_featureName$]: dart.finalFieldType(core.String),
+    [_matcher]: dart.finalFieldType(interfaces.Matcher)
+  }));
+  var _parent = dart.privateName(having_matcher, "_parent");
+  var _functionMatchers = dart.privateName(having_matcher, "_functionMatchers");
+  var _name$0 = dart.privateName(having_matcher, "_name");
+  const _is_HavingMatcher_default = Symbol('_is_HavingMatcher_default');
+  having_matcher.HavingMatcher$ = dart.generic(T => {
+    var _FunctionMatcherOfT = () => (_FunctionMatcherOfT = dart.constFn(having_matcher._FunctionMatcher$(T)))();
+    var JSArrayOf_FunctionMatcherOfT = () => (JSArrayOf_FunctionMatcherOfT = dart.constFn(_interceptors.JSArray$(_FunctionMatcherOfT())))();
+    var HavingMatcherOfT = () => (HavingMatcherOfT = dart.constFn(having_matcher.HavingMatcher$(T)))();
+    class HavingMatcher extends core.Object {
+      having(feature, description, matcher) {
+        if (feature == null) dart.nullFailed(I[12], 27, 31, "feature");
+        if (description == null) dart.nullFailed(I[12], 27, 47, "description");
+        return new (HavingMatcherOfT()).new(this[_parent], description, feature, matcher, this[_functionMatchers]);
+      }
+      matches(item, matchState) {
+        if (matchState == null) dart.nullFailed(I[12], 31, 26, "matchState");
+        for (let matcher of T$.JSArrayOfMatcher().of([this[_parent]])[$followedBy](this[_functionMatchers])) {
+          if (!dart.test(matcher.matches(item, matchState))) {
+            util.addStateInfo(matchState, new _js_helper.LinkedMap.from(["matcher", matcher]));
+            return false;
+          }
+        }
+        return true;
+      }
+      describeMismatch(item, mismatchDescription, matchState, verbose) {
+        if (mismatchDescription == null) dart.nullFailed(I[12], 43, 25, "mismatchDescription");
+        if (matchState == null) dart.nullFailed(I[12], 43, 50, "matchState");
+        if (verbose == null) dart.nullFailed(I[12], 43, 67, "verbose");
+        let matcher = interfaces.Matcher.as(matchState[$_get]("matcher"));
+        matcher.describeMismatch(item, mismatchDescription, core.Map.as(matchState[$_get]("state")), verbose);
+        return mismatchDescription;
+      }
+      describe(description) {
+        if (description == null) dart.nullFailed(I[12], 51, 36, "description");
+        return description.add("").addDescriptionOf(this[_parent]).add(" with ").addAll("", " and ", "", this[_functionMatchers]);
+      }
+      get [_name$]() {
+        return T$.StringN().as(this[$noSuchMethod](new core._Invocation.getter(C[3] || CT.C3)));
+      }
+    }
+    (HavingMatcher.new = function(parent, description, feature, matcher, existing = null) {
+      if (parent == null) dart.nullFailed(I[12], 16, 32, "parent");
+      if (description == null) dart.nullFailed(I[12], 16, 47, "description");
+      if (feature == null) dart.nullFailed(I[12], 17, 27, "feature");
+      this[_parent] = parent;
+      this[_functionMatchers] = (() => {
+        let t2 = JSArrayOf_FunctionMatcherOfT().of([]);
+        let t3 = existing;
+        if (t3 != null) t2[$addAll](t3);
+        t2[$add](new (_FunctionMatcherOfT()).new(description, feature, matcher));
+        return t2;
+      })();
+      ;
+    }).prototype = HavingMatcher.prototype;
+    dart.addTypeTests(HavingMatcher);
+    HavingMatcher.prototype[_is_HavingMatcher_default] = true;
+    dart.addTypeCaches(HavingMatcher);
+    HavingMatcher[dart.implements] = () => [type_matcher.TypeMatcher$(T)];
+    dart.setMethodSignature(HavingMatcher, () => ({
+      __proto__: dart.getMethods(HavingMatcher.__proto__),
+      having: dart.fnType(type_matcher.TypeMatcher$(T), [dart.fnType(dart.nullable(core.Object), [T]), core.String, dart.dynamic]),
+      matches: dart.fnType(core.bool, [dart.nullable(core.Object), core.Map]),
+      describeMismatch: dart.fnType(interfaces.Description, [dart.dynamic, interfaces.Description, core.Map, core.bool]),
+      describe: dart.fnType(interfaces.Description, [interfaces.Description])
+    }));
+    dart.setGetterSignature(HavingMatcher, () => ({
+      __proto__: dart.getGetters(HavingMatcher.__proto__),
+      [_name$]: dart.nullable(core.String)
+    }));
+    dart.setLibraryUri(HavingMatcher, I[13]);
+    dart.setFieldSignature(HavingMatcher, () => ({
+      __proto__: dart.getFields(HavingMatcher.__proto__),
+      [_parent]: dart.finalFieldType(type_matcher.TypeMatcher$(T)),
+      [_functionMatchers]: dart.finalFieldType(core.List$(having_matcher._FunctionMatcher$(T)))
+    }));
+    return HavingMatcher;
+  });
+  having_matcher.HavingMatcher = having_matcher.HavingMatcher$();
+  dart.addTypeTests(having_matcher.HavingMatcher, _is_HavingMatcher_default);
+  var _feature$ = dart.privateName(having_matcher, "_feature");
+  const _is__FunctionMatcher_default = Symbol('_is__FunctionMatcher_default');
+  having_matcher._FunctionMatcher$ = dart.generic(T => {
+    class _FunctionMatcher extends custom_matcher.CustomMatcher {
+      featureValueOf(actual) {
+        let t4;
+        T.as(actual);
+        t4 = actual;
+        return this[_feature$](t4);
+      }
+    }
+    (_FunctionMatcher.new = function(name, _feature, matcher) {
+      if (name == null) dart.nullFailed(I[12], 61, 27, "name");
+      if (_feature == null) dart.nullFailed(I[12], 61, 38, "_feature");
+      this[_feature$] = _feature;
+      _FunctionMatcher.__proto__.new.call(this, "`" + dart.str(name) + "`:", "`" + dart.str(name) + "`", matcher);
+      ;
+    }).prototype = _FunctionMatcher.prototype;
+    dart.addTypeTests(_FunctionMatcher);
+    _FunctionMatcher.prototype[_is__FunctionMatcher_default] = true;
+    dart.addTypeCaches(_FunctionMatcher);
+    dart.setMethodSignature(_FunctionMatcher, () => ({
+      __proto__: dart.getMethods(_FunctionMatcher.__proto__),
+      featureValueOf: dart.fnType(dart.nullable(core.Object), [dart.nullable(core.Object)])
+    }));
+    dart.setLibraryUri(_FunctionMatcher, I[13]);
+    dart.setFieldSignature(_FunctionMatcher, () => ({
+      __proto__: dart.getFields(_FunctionMatcher.__proto__),
+      [_feature$]: dart.finalFieldType(dart.fnType(dart.dynamic, [T]))
+    }));
+    return _FunctionMatcher;
+  });
+  having_matcher._FunctionMatcher = having_matcher._FunctionMatcher$();
+  dart.addTypeTests(having_matcher._FunctionMatcher, _is__FunctionMatcher_default);
+  type_matcher.isA = function isA(T) {
+    return new (type_matcher.TypeMatcher$(T)).new();
+  };
+  type_matcher._stripDynamic = function _stripDynamic(type) {
+    if (type == null) dart.nullFailed(I[2], 111, 27, "type");
+    return dart.toString(type)[$replaceAll](type_matcher._dart2DynamicArgs, "");
+  };
+  dart.defineLazy(type_matcher, {
+    /*type_matcher._dart2DynamicArgs*/get _dart2DynamicArgs() {
+      return core.RegExp.new("<dynamic(, dynamic)*>");
+    }
+  }, false);
+  core_matchers._Empty = class _Empty extends interfaces.Matcher {
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[14], 17, 26, "matchState");
+      return core.bool.as(dart.dload(item, 'isEmpty'));
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 20, 36, "description");
+      return description.add("empty");
+    }
+  };
+  (core_matchers._Empty.new = function() {
+    core_matchers._Empty.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._Empty.prototype;
+  dart.addTypeTests(core_matchers._Empty);
+  dart.addTypeCaches(core_matchers._Empty);
+  dart.setMethodSignature(core_matchers._Empty, () => ({
+    __proto__: dart.getMethods(core_matchers._Empty.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(core_matchers._Empty, I[15]);
+  core_matchers._NotEmpty = class _NotEmpty extends interfaces.Matcher {
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[14], 30, 26, "matchState");
+      return core.bool.as(dart.dload(item, 'isNotEmpty'));
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 33, 36, "description");
+      return description.add("non-empty");
+    }
+  };
+  (core_matchers._NotEmpty.new = function() {
+    core_matchers._NotEmpty.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._NotEmpty.prototype;
+  dart.addTypeTests(core_matchers._NotEmpty);
+  dart.addTypeCaches(core_matchers._NotEmpty);
+  dart.setMethodSignature(core_matchers._NotEmpty, () => ({
+    __proto__: dart.getMethods(core_matchers._NotEmpty.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(core_matchers._NotEmpty, I[15]);
+  core_matchers._IsNull = class _IsNull extends interfaces.Matcher {
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[14], 45, 26, "matchState");
+      return item == null;
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 47, 36, "description");
+      return description.add("null");
+    }
+  };
+  (core_matchers._IsNull.new = function() {
+    core_matchers._IsNull.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._IsNull.prototype;
+  dart.addTypeTests(core_matchers._IsNull);
+  dart.addTypeCaches(core_matchers._IsNull);
+  dart.setMethodSignature(core_matchers._IsNull, () => ({
+    __proto__: dart.getMethods(core_matchers._IsNull.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(core_matchers._IsNull, I[15]);
+  core_matchers._IsNotNull = class _IsNotNull extends interfaces.Matcher {
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[14], 53, 26, "matchState");
+      return item != null;
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 55, 36, "description");
+      return description.add("not null");
+    }
+  };
+  (core_matchers._IsNotNull.new = function() {
+    core_matchers._IsNotNull.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._IsNotNull.prototype;
+  dart.addTypeTests(core_matchers._IsNotNull);
+  dart.addTypeCaches(core_matchers._IsNotNull);
+  dart.setMethodSignature(core_matchers._IsNotNull, () => ({
+    __proto__: dart.getMethods(core_matchers._IsNotNull.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(core_matchers._IsNotNull, I[15]);
+  core_matchers._IsTrue = class _IsTrue extends interfaces.Matcher {
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[14], 67, 26, "matchState");
+      return dart.equals(item, true);
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 69, 36, "description");
+      return description.add("true");
+    }
+  };
+  (core_matchers._IsTrue.new = function() {
+    core_matchers._IsTrue.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._IsTrue.prototype;
+  dart.addTypeTests(core_matchers._IsTrue);
+  dart.addTypeCaches(core_matchers._IsTrue);
+  dart.setMethodSignature(core_matchers._IsTrue, () => ({
+    __proto__: dart.getMethods(core_matchers._IsTrue.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(core_matchers._IsTrue, I[15]);
+  core_matchers._IsFalse = class _IsFalse extends interfaces.Matcher {
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[14], 75, 26, "matchState");
+      return dart.equals(item, false);
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 77, 36, "description");
+      return description.add("false");
+    }
+  };
+  (core_matchers._IsFalse.new = function() {
+    core_matchers._IsFalse.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._IsFalse.prototype;
+  dart.addTypeTests(core_matchers._IsFalse);
+  dart.addTypeCaches(core_matchers._IsFalse);
+  dart.setMethodSignature(core_matchers._IsFalse, () => ({
+    __proto__: dart.getMethods(core_matchers._IsFalse.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(core_matchers._IsFalse, I[15]);
+  core_matchers._IsNaN = class _IsNaN extends feature_matcher.FeatureMatcher$(core.num) {
+    typedMatches(item, matchState) {
+      core.num.as(item);
+      if (item == null) dart.nullFailed(I[14], 89, 25, "item");
+      if (matchState == null) dart.nullFailed(I[14], 89, 35, "matchState");
+      return (0 / 0)[$compareTo](item) === 0;
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 92, 36, "description");
+      return description.add("NaN");
+    }
+  };
+  (core_matchers._IsNaN.new = function() {
+    core_matchers._IsNaN.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._IsNaN.prototype;
+  dart.addTypeTests(core_matchers._IsNaN);
+  dart.addTypeCaches(core_matchers._IsNaN);
+  dart.setMethodSignature(core_matchers._IsNaN, () => ({
+    __proto__: dart.getMethods(core_matchers._IsNaN.__proto__),
+    typedMatches: dart.fnType(core.bool, [dart.nullable(core.Object), core.Map])
+  }));
+  dart.setLibraryUri(core_matchers._IsNaN, I[15]);
+  core_matchers._IsNotNaN = class _IsNotNaN extends feature_matcher.FeatureMatcher$(core.num) {
+    typedMatches(item, matchState) {
+      core.num.as(item);
+      if (item == null) dart.nullFailed(I[14], 98, 25, "item");
+      if (matchState == null) dart.nullFailed(I[14], 98, 35, "matchState");
+      return (0 / 0)[$compareTo](item) !== 0;
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 101, 36, "description");
+      return description.add("not NaN");
+    }
+  };
+  (core_matchers._IsNotNaN.new = function() {
+    core_matchers._IsNotNaN.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._IsNotNaN.prototype;
+  dart.addTypeTests(core_matchers._IsNotNaN);
+  dart.addTypeCaches(core_matchers._IsNotNaN);
+  dart.setMethodSignature(core_matchers._IsNotNaN, () => ({
+    __proto__: dart.getMethods(core_matchers._IsNotNaN.__proto__),
+    typedMatches: dart.fnType(core.bool, [dart.nullable(core.Object), core.Map])
+  }));
+  dart.setLibraryUri(core_matchers._IsNotNaN, I[15]);
+  var _expected$0 = dart.privateName(core_matchers, "_IsSameAs._expected");
+  var _expected = dart.privateName(core_matchers, "_expected");
+  core_matchers._IsSameAs = class _IsSameAs extends interfaces.Matcher {
+    get [_expected]() {
+      return this[_expected$0];
+    }
+    set [_expected](value) {
+      super[_expected] = value;
+    }
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[14], 112, 26, "matchState");
+      return core.identical(item, this[_expected]);
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 115, 36, "description");
+      return description.add("same instance as ").addDescriptionOf(this[_expected]);
+    }
+  };
+  (core_matchers._IsSameAs.new = function(_expected) {
+    this[_expected$0] = _expected;
+    core_matchers._IsSameAs.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._IsSameAs.prototype;
+  dart.addTypeTests(core_matchers._IsSameAs);
+  dart.addTypeCaches(core_matchers._IsSameAs);
+  dart.setMethodSignature(core_matchers._IsSameAs, () => ({
+    __proto__: dart.getMethods(core_matchers._IsSameAs.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(core_matchers._IsSameAs, I[15]);
+  dart.setFieldSignature(core_matchers._IsSameAs, () => ({
+    __proto__: dart.getFields(core_matchers._IsSameAs.__proto__),
+    [_expected]: dart.finalFieldType(dart.nullable(core.Object))
+  }));
+  core_matchers._IsAnything = class _IsAnything extends interfaces.Matcher {
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[14], 125, 26, "matchState");
+      return true;
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 127, 36, "description");
+      return description.add("anything");
+    }
+  };
+  (core_matchers._IsAnything.new = function() {
+    core_matchers._IsAnything.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._IsAnything.prototype;
+  dart.addTypeTests(core_matchers._IsAnything);
+  dart.addTypeCaches(core_matchers._IsAnything);
+  dart.setMethodSignature(core_matchers._IsAnything, () => ({
+    __proto__: dart.getMethods(core_matchers._IsAnything.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(core_matchers._IsAnything, I[15]);
+  const _is_isInstanceOf_default = Symbol('_is_isInstanceOf_default');
+  core_matchers.isInstanceOf$ = dart.generic(T => {
+    class isInstanceOf extends type_matcher.TypeMatcher$(T) {}
+    (isInstanceOf.new = function() {
+      isInstanceOf.__proto__.new.call(this);
+      ;
+    }).prototype = isInstanceOf.prototype;
+    dart.addTypeTests(isInstanceOf);
+    isInstanceOf.prototype[_is_isInstanceOf_default] = true;
+    dart.addTypeCaches(isInstanceOf);
+    dart.setLibraryUri(isInstanceOf, I[15]);
+    return isInstanceOf;
+  });
+  core_matchers.isInstanceOf = core_matchers.isInstanceOf$();
+  dart.addTypeTests(core_matchers.isInstanceOf, _is_isInstanceOf_default);
+  core_matchers._ReturnsNormally = class _ReturnsNormally extends feature_matcher.FeatureMatcher$(core.Function) {
+    typedMatches(f, matchState) {
+      core.Function.as(f);
+      if (f == null) dart.nullFailed(I[14], 151, 30, "f");
+      if (matchState == null) dart.nullFailed(I[14], 151, 37, "matchState");
+      try {
+        dart.dcall(f, []);
+        return true;
+      } catch (e$) {
+        let e = dart.getThrown(e$);
+        let s = dart.stackTrace(e$);
+        if (core.Object.is(e)) {
+          util.addStateInfo(matchState, new _js_helper.LinkedMap.from(["exception", e, "stack", s]));
+          return false;
+        } else
+          throw e$;
+      }
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 162, 36, "description");
+      return description.add("return normally");
+    }
+    describeTypedMismatch(item, mismatchDescription, matchState, verbose) {
+      core.Function.as(item);
+      if (item == null) dart.nullFailed(I[14], 166, 46, "item");
+      if (mismatchDescription == null) dart.nullFailed(I[14], 167, 19, "mismatchDescription");
+      if (matchState == null) dart.nullFailed(I[14], 167, 44, "matchState");
+      if (verbose == null) dart.nullFailed(I[14], 167, 61, "verbose");
+      mismatchDescription.add("threw ").addDescriptionOf(matchState[$_get]("exception"));
+      if (dart.test(verbose)) {
+        mismatchDescription.add(" at ").add(dart.toString(matchState[$_get]("stack")));
+      }
+      return mismatchDescription;
+    }
+  };
+  (core_matchers._ReturnsNormally.new = function() {
+    core_matchers._ReturnsNormally.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._ReturnsNormally.prototype;
+  dart.addTypeTests(core_matchers._ReturnsNormally);
+  dart.addTypeCaches(core_matchers._ReturnsNormally);
+  dart.setMethodSignature(core_matchers._ReturnsNormally, () => ({
+    __proto__: dart.getMethods(core_matchers._ReturnsNormally.__proto__),
+    typedMatches: dart.fnType(core.bool, [dart.nullable(core.Object), core.Map])
+  }));
+  dart.setLibraryUri(core_matchers._ReturnsNormally, I[15]);
+  var _matcher$ = dart.privateName(core_matchers, "_HasLength._matcher");
+  var _matcher$0 = dart.privateName(core_matchers, "_matcher");
+  core_matchers._HasLength = class _HasLength extends interfaces.Matcher {
+    get [_matcher$0]() {
+      return this[_matcher$];
+    }
+    set [_matcher$0](value) {
+      super[_matcher$0] = value;
+    }
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[14], 191, 26, "matchState");
+      try {
+        if (dart.dtest(dart.dsend(dart.dsend(dart.dload(item, 'length'), '*', [dart.dload(item, 'length')]), '>=', [0]))) {
+          return this[_matcher$0].matches(dart.dload(item, 'length'), matchState);
+        }
+      } catch (e$) {
+        let e = dart.getThrown(e$);
+        if (core.Object.is(e)) {
+          return false;
+        } else
+          throw e$;
+      }
+      dart.throw(new core.UnsupportedError.new("Should never get here"));
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 205, 36, "description");
+      return description.add("an object with length of ").addDescriptionOf(this[_matcher$0]);
+    }
+    describeMismatch(item, mismatchDescription, matchState, verbose) {
+      if (mismatchDescription == null) dart.nullFailed(I[14], 210, 25, "mismatchDescription");
+      if (matchState == null) dart.nullFailed(I[14], 210, 50, "matchState");
+      if (verbose == null) dart.nullFailed(I[14], 210, 67, "verbose");
+      try {
+        if (dart.dtest(dart.dsend(dart.dsend(dart.dload(item, 'length'), '*', [dart.dload(item, 'length')]), '>=', [0]))) {
+          return mismatchDescription.add("has length of ").addDescriptionOf(dart.dload(item, 'length'));
+        }
+      } catch (e$) {
+        let e = dart.getThrown(e$);
+        if (core.Object.is(e)) {
+          return mismatchDescription.add("has no length property");
+        } else
+          throw e$;
+      }
+      dart.throw(new core.UnsupportedError.new("Should never get here"));
+    }
+  };
+  (core_matchers._HasLength.new = function(_matcher) {
+    if (_matcher == null) dart.nullFailed(I[14], 188, 25, "_matcher");
+    this[_matcher$] = _matcher;
+    core_matchers._HasLength.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._HasLength.prototype;
+  dart.addTypeTests(core_matchers._HasLength);
+  dart.addTypeCaches(core_matchers._HasLength);
+  dart.setMethodSignature(core_matchers._HasLength, () => ({
+    __proto__: dart.getMethods(core_matchers._HasLength.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(core_matchers._HasLength, I[15]);
+  dart.setFieldSignature(core_matchers._HasLength, () => ({
+    __proto__: dart.getFields(core_matchers._HasLength.__proto__),
+    [_matcher$0]: dart.finalFieldType(interfaces.Matcher)
+  }));
+  var _expected$1 = dart.privateName(core_matchers, "_Contains._expected");
+  core_matchers._Contains = class _Contains extends interfaces.Matcher {
+    get [_expected]() {
+      return this[_expected$1];
+    }
+    set [_expected](value) {
+      super[_expected] = value;
+    }
+    matches(item, matchState) {
+      if (matchState == null) dart.nullFailed(I[14], 241, 26, "matchState");
+      let expected = this[_expected];
+      if (typeof item == 'string') {
+        return core.Pattern.is(expected) && item[$contains](expected);
+      } else if (core.Iterable.is(item)) {
+        if (interfaces.Matcher.is(expected)) {
+          return item[$any](dart.fn(e => expected.matches(e, matchState), T$.dynamicTobool()));
+        } else {
+          return item[$contains](this[_expected]);
+        }
+      } else if (core.Map.is(item)) {
+        return item[$containsKey](this[_expected]);
+      }
+      return false;
+    }
+    describe(description) {
+      if (description == null) dart.nullFailed(I[14], 258, 36, "description");
+      return description.add("contains ").addDescriptionOf(this[_expected]);
+    }
+    describeMismatch(item, mismatchDescription, matchState, verbose) {
+      if (mismatchDescription == null) dart.nullFailed(I[14], 263, 25, "mismatchDescription");
+      if (matchState == null) dart.nullFailed(I[14], 263, 50, "matchState");
+      if (verbose == null) dart.nullFailed(I[14], 263, 67, "verbose");
+      if (typeof item == 'string' || core.Iterable.is(item) || core.Map.is(item)) {
+        return super.describeMismatch(item, mismatchDescription, matchState, verbose);
+      } else {
+        return mismatchDescription.add("is not a string, map or iterable");
+      }
+    }
+  };
+  (core_matchers._Contains.new = function(_expected) {
+    this[_expected$1] = _expected;
+    core_matchers._Contains.__proto__.new.call(this);
+    ;
+  }).prototype = core_matchers._Contains.prototype;
+  dart.addTypeTests(core_matchers._Contains);
+  dart.addTypeCaches(core_matchers._Contains);
+  dart.setMethodSignature(core_matchers._Contains, () => ({
+    __proto__: dart.getMethods(core_matchers._Contains.__proto__),
+    matches: dart.fnType(core.bool, [dart.dynamic, core.Map]),
+    describe: dart.fnType(interfaces.Description, [interfaces.Description])
+  }));
+  dart.setLibraryUri(core_matchers._Contains, I[15]);
+  dart.setFieldSignature(core_matchers._Contains, () => ({
+    __proto__: dart.getFields(core_matchers._Contains.__proto__),
+    [_expected]: dart.finalFieldType(dart.nullable(core.Object))
+  }));
+  var _source$ = dart.privateName(core_matchers, "_In._source");
+  var _containsFunction$ = dart.privateName(core_matchers, "_In._containsFunction");
+  var _source = dart.privateName(core_matchers, "_source");
+  var _containsFunction = dart.privateName(core_matchers, "_containsFunction");
+  const _is__In_default = Symbol('_is__In_default');
+  core_matchers._In$ = dart.generic(T => {
+    class _In extends feature_matcher.FeatureMatcher$(T) {
+      get [_source]() {
+        return this[_source$];
+      }
+      set [_source](value) {
+        super[_source] = value;
+      }
+      get [_containsFunction]() {
+        return this[_containsFunction$];
+      }
+      set [_containsFunction](value) {
+        super[_containsFunction] = value;
+      }
+      typedMatches(item, matchState) {
+        let t7;
+        T.as(item);
+        if (matchState == null) dart.nullFailed(I[14], 295, 33, "matchState");
+        t7 = item;
+        return this[_containsFunction](t7);
+      }
+      describe(description) {
+        if (description == null) dart.nullFailed(I[14], 298, 36, "description");
+        return description.add("is in ").addDescriptionOf(this[_source]);
+      }
+    }
+    (_In.new = function(_source, _containsFunction) {
+      if (_source == null) dart.nullFailed(I[14], 292, 18, "_source");
+      if (_containsFunction == null) dart.nullFailed(I[14], 292, 32, "_containsFunction");
+      this[_source$] = _source;
+      this[_containsFunction$] = _containsFunction;
+      _In.__proto__.new.call(this);
+      ;
+    }).prototype = _In.prototype;
+    dart.addTypeTests(_In);
+    _In.prototype[_is__In_default] = true;
+    dart.addTypeCaches(_In);
+    dart.setMethodSignature(_In, () => ({
+      __proto__: dart.getMethods(_In.__proto__),
+      typedMatches: dart.fnType(core.bool, [dart.nullable(core.Object), core.Map])
+    }));
+    dart.setLibraryUri(_In, I[15]);
+    dart.setFieldSignature(_In, () => ({
+      __proto__: dart.getFields(_In.__proto__),
+      [_source]: dart.finalFieldType(core.Object),
+      [_containsFunction]: dart.finalFieldType(dart.fnType(core.bool, [T]))
+    }));
+    return _In;
+  });
+  core_matchers._In = core_matchers._In$();
+  dart.addTypeTests(core_matchers._In, _is__In_default);
+  var _description$ = dart.privateName(core_matchers, "_description");
+  const _is__Predicate_default = Symbol('_is__Predicate_default');
+  core_matchers._Predicate$ = dart.generic(T => {
+    class _Predicate extends feature_matcher.FeatureMatcher$(T) {
+      typedMatches(item, matchState) {
+        let t7;
+        T.as(item);
+        if (matchState == null) dart.nullFailed(I[14], 321, 33, "matchState");
+        t7 = item;
+        return this[_matcher$0](t7);
+      }
+      describe(description) {
+        if (description == null) dart.nullFailed(I[14], 324, 36, "description");
+        return description.add(this[_description$]);
+      }
+    }
+    (_Predicate.new = function(_matcher, _description) {
+      if (_matcher == null) dart.nullFailed(I[14], 318, 19, "_matcher");
+      if (_description == null) dart.nullFailed(I[14], 318, 34, "_description");
+      this[_matcher$0] = _matcher;
+      this[_description$] = _description;
+      _Predicate.__proto__.new.call(this);
+      ;
+    }).prototype = _Predicate.prototype;
+    dart.addTypeTests(_Predicate);
+    _Predicate.prototype[_is__Predicate_default] = true;
+    dart.addTypeCaches(_Predicate);
+    dart.setMethodSignature(_Predicate, () => ({
+      __proto__: dart.getMethods(_Predicate.__proto__),
+      typedMatches: dart.fnType(core.bool, [dart.nullable(core.Object), core.Map])
+    }));
+    dart.setLibraryUri(_Predicate, I[15]);
+    dart.setFieldSignature(_Predicate, () => ({
+      __proto__: dart.getFields(_Predicate.__proto__),
+      [_matcher$0]: dart.finalFieldType(dart.fnType(core.bool, [T])),
+      [_description$]: dart.finalFieldType(core.String)
+    }));
+    return _Predicate;
+  });
+  core_matchers._Predicate = core_matchers._Predicate$();
+  dart.addTypeTests(core_matchers._Predicate, _is__Predicate_default);
+  core_matchers.same = function same(expected) {
+    return new core_matchers._IsSameAs.new(expected);
+  };
+  core_matchers.hasLength = function hasLength(matcher) {
+    return new core_matchers._HasLength.new(util.wrapMatcher(matcher));
+  };
+  core_matchers.contains = function contains(expected) {
+    return new core_matchers._Contains.new(expected);
+  };
+  core_matchers.isIn = function isIn(expected) {
+    if (core.Iterable.is(expected)) {
+      return new (T$._InOfObjectN()).new(expected, dart.bind(expected, $contains));
+    } else if (typeof expected == 'string') {
+      return new (T$._InOfPattern()).new(expected, dart.bind(expected, $contains));
+    } else if (core.Map.is(expected)) {
+      return new (T$._InOfObjectN()).new(expected, dart.bind(expected, $containsKey));
+    }
+    dart.throw(new core.ArgumentError.value(expected, "expected", "Only Iterable, Map, and String are supported."));
+  };
+  core_matchers.predicate = function predicate(T, f, description = "satisfies function") {
+    if (f == null) dart.nullFailed(I[14], 308, 39, "f");
+    if (description == null) dart.nullFailed(I[14], 309, 17, "description");
+    return new (core_matchers._Predicate$(T)).new(f, description);
+  };
+  dart.defineLazy(core_matchers, {
+    /*core_matchers.isEmpty*/get isEmpty() {
+      return C[4] || CT.C4;
+    },
+    /*core_matchers.isNotEmpty*/get isNotEmpty() {
+      return C[5] || CT.C5;
+    },
+    /*core_matchers.isNull*/get isNull() {
+      return C[6] || CT.C6;
+    },
+    /*core_matchers.isNotNull*/get isNotNull() {
+      return C[7] || CT.C7;
+    },
+    /*core_matchers.isTrue*/get isTrue() {
+      return C[8] || CT.C8;
+    },
+    /*core_matchers.isFalse*/get isFalse() {
+      return C[9] || CT.C9;
+    },
+    /*core_matchers.isNaN*/get isNaN() {
+      return C[10] || CT.C10;
+    },
+    /*core_matchers.isNotNaN*/get isNotNaN() {
+      return C[11] || CT.C11;
+    },
+    /*core_matchers.anything*/get anything() {
+      return C[12] || CT.C12;
+    },
+    /*core_matchers.returnsNormally*/get returnsNormally() {
+      return C[13] || CT.C13;
+    },
+    /*core_matchers.isMap*/get isMap() {
+      return C[14] || CT.C14;
+    },
+    /*core_matchers.isList*/get isList() {
+      return C[15] || CT.C15;
+    }
+  }, false);
+  dart.trackLibraries("packages/matcher/src/equals_matcher.dart", {
+    "package:matcher/src/equals_matcher.dart": equals_matcher,
+    "package:matcher/src/util.dart": util,
+    "package:matcher/src/pretty_print.dart": pretty_print,
+    "package:matcher/src/description.dart": description$,
+    "package:matcher/src/custom_matcher.dart": custom_matcher,
+    "package:matcher/src/having_matcher.dart": having_matcher,
+    "package:matcher/src/type_matcher.dart": type_matcher,
+    "package:matcher/src/feature_matcher.dart": feature_matcher,
+    "package:matcher/src/core_matchers.dart": core_matchers
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["type_matcher.dart","feature_matcher.dart","equals_matcher.dart","util.dart","pretty_print.dart","description.dart","custom_matcher.dart","having_matcher.dart","core_matchers.dart"],"names":[],"mappings":"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","file":"../../../../../../../../E:/packages/matcher/src/equals_matcher.dart.lib.js"}');
+  // Exports:
+  return {
+    src__equals_matcher: equals_matcher,
+    src__util: util,
+    src__pretty_print: pretty_print,
+    src__description: description$,
+    src__custom_matcher: custom_matcher,
+    src__having_matcher: having_matcher,
+    src__type_matcher: type_matcher,
+    src__feature_matcher: feature_matcher,
+    src__core_matchers: core_matchers
+  };
+}));
+
+//# sourceMappingURL=equals_matcher.dart.lib.js.map

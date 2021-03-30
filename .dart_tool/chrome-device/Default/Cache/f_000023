@@ -1,0 +1,466 @@
+define(['dart_sdk', 'packages/test_api/src/backend/platform_selector.dart', 'packages/test_api/src/frontend/timeout.dart', 'packages/collection/src/union_set_controller.dart', 'packages/boolean_selector/src/none.dart', 'packages/test_api/src/frontend/skip.dart', 'packages/test_api/src/utils.dart', 'packages/collection/src/functions.dart', 'packages/test_api/src/backend/suite_platform.dart'], (function load__packages__test_api__src__backend__metadata_dart(dart_sdk, packages__test_api__src__backend__platform_selector$46dart, packages__test_api__src__frontend__timeout$46dart, packages__collection__src__union_set_controller$46dart, packages__boolean_selector__src__none$46dart, packages__test_api__src__frontend__skip$46dart, packages__test_api__src__utils$46dart, packages__collection__src__functions$46dart, packages__test_api__src__backend__suite_platform$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const collection = dart_sdk.collection;
+  const _js_helper = dart_sdk._js_helper;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const platform_selector = packages__test_api__src__backend__platform_selector$46dart.src__backend__platform_selector;
+  const timeout$ = packages__test_api__src__frontend__timeout$46dart.src__frontend__timeout;
+  const unmodifiable_wrappers = packages__collection__src__union_set_controller$46dart.src__unmodifiable_wrappers;
+  const boolean_selector = packages__boolean_selector__src__none$46dart.boolean_selector;
+  const impl = packages__boolean_selector__src__none$46dart.src__impl;
+  const skip$ = packages__test_api__src__frontend__skip$46dart.src__frontend__skip;
+  const utils = packages__test_api__src__utils$46dart.src__utils;
+  const functions = packages__collection__src__functions$46dart.src__functions;
+  const suite_platform = packages__test_api__src__backend__suite_platform$46dart.src__backend__suite_platform;
+  var metadata$ = Object.create(dart.library);
+  var $toSet = dartx.toSet;
+  var $_set = dartx._set;
+  var $map = dartx.map;
+  var $forEach = dartx.forEach;
+  var $any = dartx.any;
+  var $keys = dartx.keys;
+  var $toList = dartx.toList;
+  var $contains = dartx.contains;
+  var $remove = dartx.remove;
+  var $fold = dartx.fold;
+  var $where = dartx.where;
+  var $isEmpty = dartx.isEmpty;
+  var $length = dartx.length;
+  var $add = dartx.add;
+  var $toString = dartx.toString;
+  dart._checkModuleNullSafetyMode(true);
+  var T = {
+    UnmodifiableSetViewOfString: () => (T.UnmodifiableSetViewOfString = dart.constFn(unmodifiable_wrappers.UnmodifiableSetView$(core.String)))(),
+    LinkedHashSetOfString: () => (T.LinkedHashSetOfString = dart.constFn(collection.LinkedHashSet$(core.String)))(),
+    UnmodifiableMapViewOfPlatformSelector$Metadata: () => (T.UnmodifiableMapViewOfPlatformSelector$Metadata = dart.constFn(collection.UnmodifiableMapView$(platform_selector.PlatformSelector, metadata$.Metadata)))(),
+    UnmodifiableMapViewOfBooleanSelector$Metadata: () => (T.UnmodifiableMapViewOfBooleanSelector$Metadata = dart.constFn(collection.UnmodifiableMapView$(boolean_selector.BooleanSelector, metadata$.Metadata)))(),
+    boolN: () => (T.boolN = dart.constFn(dart.nullable(core.bool)))(),
+    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
+    intN: () => (T.intN = dart.constFn(dart.nullable(core.int)))(),
+    LinkedMapOfPlatformSelector$Metadata: () => (T.LinkedMapOfPlatformSelector$Metadata = dart.constFn(_js_helper.LinkedMap$(platform_selector.PlatformSelector, metadata$.Metadata)))(),
+    MapEntryOfBooleanSelector$Metadata: () => (T.MapEntryOfBooleanSelector$Metadata = dart.constFn(core.MapEntry$(boolean_selector.BooleanSelector, metadata$.Metadata)))(),
+    dynamicAnddynamicToMapEntryOfBooleanSelector$Metadata: () => (T.dynamicAnddynamicToMapEntryOfBooleanSelector$Metadata = dart.constFn(dart.fnType(T.MapEntryOfBooleanSelector$Metadata(), [dart.dynamic, dart.dynamic])))(),
+    StringAnddynamicTovoid: () => (T.StringAnddynamicTovoid = dart.constFn(dart.fnType(dart.void, [core.String, dart.dynamic])))(),
+    dynamicTobool: () => (T.dynamicTobool = dart.constFn(dart.fnType(core.bool, [dart.dynamic])))(),
+    VoidToMetadata: () => (T.VoidToMetadata = dart.constFn(dart.fnType(metadata$.Metadata, [])))(),
+    LinkedHashMapOfBooleanSelector$Metadata: () => (T.LinkedHashMapOfBooleanSelector$Metadata = dart.constFn(collection.LinkedHashMap$(boolean_selector.BooleanSelector, metadata$.Metadata)))(),
+    MetadataAndBooleanSelectorToMetadata: () => (T.MetadataAndBooleanSelectorToMetadata = dart.constFn(dart.fnType(metadata$.Metadata, [metadata$.Metadata, boolean_selector.BooleanSelector])))(),
+    StringTobool: () => (T.StringTobool = dart.constFn(dart.fnType(core.bool, [core.String])))(),
+    StringToString: () => (T.StringToString = dart.constFn(dart.fnType(core.String, [core.String])))(),
+    PlatformSelectorAndMetadataTovoid: () => (T.PlatformSelectorAndMetadataTovoid = dart.constFn(dart.fnType(dart.void, [platform_selector.PlatformSelector, metadata$.Metadata])))(),
+    MetadataAndMetadataToMetadata: () => (T.MetadataAndMetadataToMetadata = dart.constFn(dart.fnType(metadata$.Metadata, [metadata$.Metadata, metadata$.Metadata])))(),
+    JSArrayOfObject: () => (T.JSArrayOfObject = dart.constFn(_interceptors.JSArray$(core.Object)))(),
+    MapOfString$dynamic: () => (T.MapOfString$dynamic = dart.constFn(core.Map$(core.String, dart.dynamic)))(),
+    MapEntryOfString$MapOfString$dynamic: () => (T.MapEntryOfString$MapOfString$dynamic = dart.constFn(core.MapEntry$(core.String, T.MapOfString$dynamic())))(),
+    BooleanSelectorAndMetadataToMapEntryOfString$MapOfString$dynamic: () => (T.BooleanSelectorAndMetadataToMapEntryOfString$MapOfString$dynamic = dart.constFn(dart.fnType(T.MapEntryOfString$MapOfString$dynamic(), [boolean_selector.BooleanSelector, metadata$.Metadata])))(),
+    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
+    numN: () => (T.numN = dart.constFn(dart.nullable(core.num)))(),
+    IdentityMapOfString$numN: () => (T.IdentityMapOfString$numN = dart.constFn(_js_helper.IdentityMap$(core.String, T.numN())))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: timeout$.Timeout.prototype,
+        [Timeout_scaleFactor]: 1,
+        [Timeout_duration]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constMap(platform_selector.PlatformSelector, metadata$.Metadata, []);
+    },
+    get C2() {
+      return C[2] = dart.constMap(boolean_selector.BooleanSelector, metadata$.Metadata, []);
+    }
+  }, false);
+  var C = Array(3).fill(void 0);
+  var I = [
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.19/lib/src/backend/metadata.dart",
+    "package:test_api/src/backend/metadata.dart"
+  ];
+  var testOn$ = dart.privateName(metadata$, "Metadata.testOn");
+  var timeout$0 = dart.privateName(metadata$, "Metadata.timeout");
+  var skipReason$ = dart.privateName(metadata$, "Metadata.skipReason");
+  var tags$ = dart.privateName(metadata$, "Metadata.tags");
+  var onPlatform$ = dart.privateName(metadata$, "Metadata.onPlatform");
+  var forTag$ = dart.privateName(metadata$, "Metadata.forTag");
+  var languageVersionComment$ = dart.privateName(metadata$, "Metadata.languageVersionComment");
+  var Timeout_scaleFactor = dart.privateName(timeout$, "Timeout.scaleFactor");
+  var Timeout_duration = dart.privateName(timeout$, "Timeout.duration");
+  var _skip = dart.privateName(metadata$, "_skip");
+  var _verboseTrace = dart.privateName(metadata$, "_verboseTrace");
+  var _chainStackTraces = dart.privateName(metadata$, "_chainStackTraces");
+  var _retry = dart.privateName(metadata$, "_retry");
+  var _validateTags = dart.privateName(metadata$, "_validateTags");
+  var _serializeTimeout = dart.privateName(metadata$, "_serializeTimeout");
+  metadata$.Metadata = class Metadata extends core.Object {
+    get testOn() {
+      return this[testOn$];
+    }
+    set testOn(value) {
+      super.testOn = value;
+    }
+    get timeout() {
+      return this[timeout$0];
+    }
+    set timeout(value) {
+      super.timeout = value;
+    }
+    get skipReason() {
+      return this[skipReason$];
+    }
+    set skipReason(value) {
+      super.skipReason = value;
+    }
+    get tags() {
+      return this[tags$];
+    }
+    set tags(value) {
+      super.tags = value;
+    }
+    get onPlatform() {
+      return this[onPlatform$];
+    }
+    set onPlatform(value) {
+      super.onPlatform = value;
+    }
+    get forTag() {
+      return this[forTag$];
+    }
+    set forTag(value) {
+      super.forTag = value;
+    }
+    get languageVersionComment() {
+      return this[languageVersionComment$];
+    }
+    set languageVersionComment(value) {
+      super.languageVersionComment = value;
+    }
+    get skip() {
+      let t1;
+      t1 = this[_skip];
+      return t1 == null ? false : t1;
+    }
+    get verboseTrace() {
+      let t1;
+      t1 = this[_verboseTrace];
+      return t1 == null ? false : t1;
+    }
+    get chainStackTraces() {
+      let t1;
+      t1 = this[_chainStackTraces];
+      return t1 == null ? true : t1;
+    }
+    get retry() {
+      let t1;
+      t1 = this[_retry];
+      return t1 == null ? 0 : t1;
+    }
+    static _parseOnPlatform(onPlatform) {
+      if (onPlatform == null) return new (T.LinkedMapOfPlatformSelector$Metadata()).new();
+      let result = new (T.LinkedMapOfPlatformSelector$Metadata()).new();
+      onPlatform[$forEach](dart.fn((platform, metadata) => {
+        let t1;
+        if (platform == null) dart.nullFailed(I[0], 82, 25, "platform");
+        if (timeout$.Timeout.is(metadata) || skip$.Skip.is(metadata)) {
+          metadata = [metadata];
+        } else if (!core.List.is(metadata)) {
+          dart.throw(new core.ArgumentError.new("Metadata for platform \"" + dart.str(platform) + "\" must be a " + "Timeout, Skip, or List of those; was \"" + dart.str(metadata) + "\"."));
+        }
+        let selector = new platform_selector.PlatformSelector.parse(platform);
+        let timeout = null;
+        let skip = null;
+        for (let metadatum of core.Iterable.as(metadata)) {
+          if (timeout$.Timeout.is(metadatum)) {
+            if (timeout != null) {
+              dart.throw(new core.ArgumentError.new("Only a single Timeout may be declared for " + "\"" + dart.str(platform) + "\"."));
+            }
+            timeout = metadatum;
+          } else if (skip$.Skip.is(metadatum)) {
+            if (skip != null) {
+              dart.throw(new core.ArgumentError.new("Only a single Skip may be declared for " + "\"" + dart.str(platform) + "\"."));
+            }
+            skip = (t1 = metadatum.reason, t1 == null ? true : t1);
+          } else {
+            dart.throw(new core.ArgumentError.new("Metadata for platform \"" + dart.str(platform) + "\" must be a " + "Timeout, Skip, or List of those; was \"" + dart.str(metadata) + "\"."));
+          }
+        }
+        result[$_set](selector, new metadata$.Metadata.parse({timeout: timeout, skip: skip}));
+      }, T.StringAnddynamicTovoid()));
+      return result;
+    }
+    static _parseTags(tags) {
+      if (tags == null) return T.LinkedHashSetOfString().new();
+      if (typeof tags == 'string') return T.LinkedHashSetOfString().from([tags]);
+      if (!core.Iterable.is(tags)) {
+        dart.throw(new core.ArgumentError.value(tags, "tags", "must be either a String or an Iterable."));
+      }
+      if (dart.test(tags[$any](dart.fn(tag => !(typeof tag == 'string'), T.dynamicTobool())))) {
+        dart.throw(new core.ArgumentError.value(tags, "tags", "must contain only Strings."));
+      }
+      return T.LinkedHashSetOfString().from(tags);
+    }
+    static new(opts) {
+      let testOn = opts && 'testOn' in opts ? opts.testOn : null;
+      let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+      let skip = opts && 'skip' in opts ? opts.skip : null;
+      let verboseTrace = opts && 'verboseTrace' in opts ? opts.verboseTrace : null;
+      let chainStackTraces = opts && 'chainStackTraces' in opts ? opts.chainStackTraces : null;
+      let retry = opts && 'retry' in opts ? opts.retry : null;
+      let skipReason = opts && 'skipReason' in opts ? opts.skipReason : null;
+      let tags = opts && 'tags' in opts ? opts.tags : null;
+      let onPlatform = opts && 'onPlatform' in opts ? opts.onPlatform : null;
+      let forTag = opts && 'forTag' in opts ? opts.forTag : null;
+      let languageVersionComment = opts && 'languageVersionComment' in opts ? opts.languageVersionComment : null;
+      function _unresolved() {
+        return new metadata$.Metadata.__({testOn: testOn, timeout: timeout, skip: skip, verboseTrace: verboseTrace, chainStackTraces: chainStackTraces, retry: retry, skipReason: skipReason, tags: tags, onPlatform: onPlatform, forTag: forTag, languageVersionComment: languageVersionComment});
+      }
+      dart.fn(_unresolved, T.VoidToMetadata());
+      if (forTag == null || tags == null) return _unresolved();
+      tags = T.LinkedHashSetOfString().from(tags);
+      forTag = T.LinkedHashMapOfBooleanSelector$Metadata().from(forTag);
+      let empty = new metadata$.Metadata.__();
+      let merged = forTag[$keys][$toList]()[$fold](metadata$.Metadata, empty, dart.fn((merged, selector) => {
+        if (merged == null) dart.nullFailed(I[0], 181, 61, "merged");
+        if (selector == null) dart.nullFailed(I[0], 181, 69, "selector");
+        if (!dart.test(selector.evaluate(dart.bind(dart.nullCheck(tags), $contains)))) return merged;
+        return merged.merge(dart.nullCheck(dart.nullCheck(forTag)[$remove](selector)));
+      }, T.MetadataAndBooleanSelectorToMetadata()));
+      if (dart.equals(merged, empty)) return _unresolved();
+      return merged.merge(_unresolved());
+    }
+    static _deserializeTimeout(serialized) {
+      if (dart.equals(serialized, "none")) return timeout$.Timeout.none;
+      let scaleFactor = dart.dsend(serialized, '_get', ["scaleFactor"]);
+      if (scaleFactor != null) return new timeout$.Timeout.factor(core.num.as(scaleFactor));
+      return new timeout$.Timeout.new(new core.Duration.new({microseconds: core.int.as(dart.dsend(serialized, '_get', ["duration"]))}));
+    }
+    [_validateTags]() {
+      let invalidTags = this.tags[$where](dart.fn(tag => {
+        if (tag == null) dart.nullFailed(I[0], 289, 17, "tag");
+        return !tag[$contains](utils.anchoredHyphenatedIdentifier);
+      }, T.StringTobool()))[$map](core.String, dart.fn(tag => {
+        if (tag == null) dart.nullFailed(I[0], 290, 15, "tag");
+        return "\"" + dart.str(tag) + "\"";
+      }, T.StringToString()))[$toList]();
+      if (dart.test(invalidTags[$isEmpty])) return;
+      dart.throw(new core.ArgumentError.new("Invalid " + dart.str(utils.pluralize("tag", invalidTags[$length])) + " " + dart.str(utils.toSentence(invalidTags)) + ". Tags must be (optionally hyphenated) " + "Dart identifiers."));
+    }
+    validatePlatformSelectors(validVariables) {
+      if (validVariables == null) dart.nullFailed(I[0], 303, 46, "validVariables");
+      this.testOn.validate(validVariables);
+      this.onPlatform[$forEach](dart.fn((selector, metadata) => {
+        if (selector == null) dart.nullFailed(I[0], 305, 25, "selector");
+        if (metadata == null) dart.nullFailed(I[0], 305, 35, "metadata");
+        selector.validate(validVariables);
+        metadata.validatePlatformSelectors(validVariables);
+      }, T.PlatformSelectorAndMetadataTovoid()));
+    }
+    merge(other) {
+      let t1, t1$, t1$0, t1$1, t1$2, t1$3;
+      if (other == null) dart.nullFailed(I[0], 316, 27, "other");
+      return metadata$.Metadata.new({testOn: this.testOn.intersection(other.testOn), timeout: this.timeout.merge(other.timeout), skip: (t1 = other[_skip], t1 == null ? this[_skip] : t1), skipReason: (t1$ = other.skipReason, t1$ == null ? this.skipReason : t1$), verboseTrace: (t1$0 = other[_verboseTrace], t1$0 == null ? this[_verboseTrace] : t1$0), chainStackTraces: (t1$1 = other[_chainStackTraces], t1$1 == null ? this[_chainStackTraces] : t1$1), retry: (t1$2 = other[_retry], t1$2 == null ? this[_retry] : t1$2), tags: this.tags.union(other.tags), onPlatform: functions.mergeMaps(platform_selector.PlatformSelector, metadata$.Metadata, this.onPlatform, other.onPlatform, {value: dart.fn((metadata1, metadata2) => {
+            if (metadata1 == null) dart.nullFailed(I[0], 326, 19, "metadata1");
+            if (metadata2 == null) dart.nullFailed(I[0], 326, 30, "metadata2");
+            return metadata1.merge(metadata2);
+          }, T.MetadataAndMetadataToMetadata())}), forTag: functions.mergeMaps(boolean_selector.BooleanSelector, metadata$.Metadata, this.forTag, other.forTag, {value: dart.fn((metadata1, metadata2) => {
+            if (metadata1 == null) dart.nullFailed(I[0], 328, 19, "metadata1");
+            if (metadata2 == null) dart.nullFailed(I[0], 328, 30, "metadata2");
+            return metadata1.merge(metadata2);
+          }, T.MetadataAndMetadataToMetadata())}), languageVersionComment: (t1$3 = other.languageVersionComment, t1$3 == null ? this.languageVersionComment : t1$3)});
+    }
+    change(opts) {
+      let testOn = opts && 'testOn' in opts ? opts.testOn : null;
+      let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+      let skip = opts && 'skip' in opts ? opts.skip : null;
+      let verboseTrace = opts && 'verboseTrace' in opts ? opts.verboseTrace : null;
+      let chainStackTraces = opts && 'chainStackTraces' in opts ? opts.chainStackTraces : null;
+      let retry = opts && 'retry' in opts ? opts.retry : null;
+      let skipReason = opts && 'skipReason' in opts ? opts.skipReason : null;
+      let onPlatform = opts && 'onPlatform' in opts ? opts.onPlatform : null;
+      let tags = opts && 'tags' in opts ? opts.tags : null;
+      let forTag = opts && 'forTag' in opts ? opts.forTag : null;
+      let languageVersionComment = opts && 'languageVersionComment' in opts ? opts.languageVersionComment : null;
+      testOn == null ? testOn = this.testOn : null;
+      timeout == null ? timeout = this.timeout : null;
+      skip == null ? skip = this[_skip] : null;
+      verboseTrace == null ? verboseTrace = this[_verboseTrace] : null;
+      chainStackTraces == null ? chainStackTraces = this[_chainStackTraces] : null;
+      retry == null ? retry = this[_retry] : null;
+      skipReason == null ? skipReason = this.skipReason : null;
+      onPlatform == null ? onPlatform = this.onPlatform : null;
+      tags == null ? tags = this.tags : null;
+      forTag == null ? forTag = this.forTag : null;
+      languageVersionComment == null ? languageVersionComment = this.languageVersionComment : null;
+      return metadata$.Metadata.new({testOn: testOn, timeout: timeout, skip: skip, verboseTrace: verboseTrace, chainStackTraces: chainStackTraces, skipReason: skipReason, onPlatform: onPlatform, tags: tags, forTag: forTag, retry: retry, languageVersionComment: languageVersionComment});
+    }
+    forPlatform(platform) {
+      if (platform == null) dart.nullFailed(I[0], 372, 38, "platform");
+      if (dart.test(this.onPlatform[$isEmpty])) return this;
+      let metadata = this;
+      this.onPlatform[$forEach](dart.fn((platformSelector, platformMetadata) => {
+        if (platformSelector == null) dart.nullFailed(I[0], 376, 25, "platformSelector");
+        if (platformMetadata == null) dart.nullFailed(I[0], 376, 43, "platformMetadata");
+        if (!dart.test(platformSelector.evaluate(platform))) return;
+        metadata = metadata.merge(platformMetadata);
+      }, T.PlatformSelectorAndMetadataTovoid()));
+      return metadata.change({onPlatform: new (T.LinkedMapOfPlatformSelector$Metadata()).new()});
+    }
+    serialize() {
+      let serializedOnPlatform = [];
+      this.onPlatform[$forEach](dart.fn((key, value) => {
+        if (key == null) dart.nullFailed(I[0], 388, 25, "key");
+        if (value == null) dart.nullFailed(I[0], 388, 30, "value");
+        serializedOnPlatform[$add](T.JSArrayOfObject().of([dart.toString(key), value.serialize()]));
+      }, T.PlatformSelectorAndMetadataTovoid()));
+      return new (T.IdentityMapOfString$dynamic()).from(["testOn", dart.equals(this.testOn, platform_selector.PlatformSelector.all) ? null : dart.toString(this.testOn), "timeout", this[_serializeTimeout](this.timeout), "skip", this[_skip], "skipReason", this.skipReason, "verboseTrace", this[_verboseTrace], "chainStackTraces", this[_chainStackTraces], "retry", this[_retry], "tags", this.tags[$toList](), "onPlatform", serializedOnPlatform, "forTag", this.forTag[$map](core.String, T.MapOfString$dynamic(), dart.fn((selector, metadata) => {
+          if (selector == null) dart.nullFailed(I[0], 402, 29, "selector");
+          if (metadata == null) dart.nullFailed(I[0], 402, 39, "metadata");
+          return new (T.MapEntryOfString$MapOfString$dynamic()).__(dart.toString(selector), metadata.serialize());
+        }, T.BooleanSelectorAndMetadataToMapEntryOfString$MapOfString$dynamic())), "languageVersionComment", this.languageVersionComment]);
+    }
+    [_serializeTimeout](timeout) {
+      let t1;
+      if (timeout == null) dart.nullFailed(I[0], 409, 37, "timeout");
+      if (dart.equals(timeout, timeout$.Timeout.none)) return "none";
+      return new (T.IdentityMapOfString$numN()).from(["duration", (t1 = timeout.duration, t1 == null ? null : t1.inMicroseconds), "scaleFactor", timeout.scaleFactor]);
+    }
+  };
+  (metadata$.Metadata.__ = function(opts) {
+    let t0, t0$;
+    let testOn = opts && 'testOn' in opts ? opts.testOn : null;
+    let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+    let skip = opts && 'skip' in opts ? opts.skip : null;
+    let skipReason = opts && 'skipReason' in opts ? opts.skipReason : null;
+    let verboseTrace = opts && 'verboseTrace' in opts ? opts.verboseTrace : null;
+    let chainStackTraces = opts && 'chainStackTraces' in opts ? opts.chainStackTraces : null;
+    let retry = opts && 'retry' in opts ? opts.retry : null;
+    let tags = opts && 'tags' in opts ? opts.tags : null;
+    let onPlatform = opts && 'onPlatform' in opts ? opts.onPlatform : null;
+    let forTag = opts && 'forTag' in opts ? opts.forTag : null;
+    let languageVersionComment = opts && 'languageVersionComment' in opts ? opts.languageVersionComment : null;
+    this[skipReason$] = skipReason;
+    this[languageVersionComment$] = languageVersionComment;
+    this[testOn$] = (t0 = testOn, t0 == null ? platform_selector.PlatformSelector.all : t0);
+    this[timeout$0] = (t0$ = timeout, t0$ == null ? C[0] || CT.C0 : t0$);
+    this[_skip] = skip;
+    this[_verboseTrace] = verboseTrace;
+    this[_chainStackTraces] = chainStackTraces;
+    this[_retry] = retry;
+    this[tags$] = new (T.UnmodifiableSetViewOfString()).new(tags == null ? T.LinkedHashSetOfString().new() : tags[$toSet]());
+    this[onPlatform$] = onPlatform == null ? C[1] || CT.C1 : new (T.UnmodifiableMapViewOfPlatformSelector$Metadata()).new(onPlatform);
+    this[forTag$] = forTag == null ? C[2] || CT.C2 : new (T.UnmodifiableMapViewOfBooleanSelector$Metadata()).new(forTag);
+    if (retry != null) core.RangeError.checkNotNegative(retry, "retry");
+    this[_validateTags]();
+  }).prototype = metadata$.Metadata.prototype;
+  (metadata$.Metadata.parse = function(opts) {
+    let t0;
+    let testOn = opts && 'testOn' in opts ? opts.testOn : null;
+    let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+    let skip = opts && 'skip' in opts ? opts.skip : null;
+    let verboseTrace = opts && 'verboseTrace' in opts ? opts.verboseTrace : null;
+    let chainStackTraces = opts && 'chainStackTraces' in opts ? opts.chainStackTraces : null;
+    let retry = opts && 'retry' in opts ? opts.retry : null;
+    let onPlatform = opts && 'onPlatform' in opts ? opts.onPlatform : null;
+    let tags = opts && 'tags' in opts ? opts.tags : null;
+    let languageVersionComment = opts && 'languageVersionComment' in opts ? opts.languageVersionComment : null;
+    this[languageVersionComment$] = languageVersionComment;
+    this[testOn$] = testOn == null ? platform_selector.PlatformSelector.all : new platform_selector.PlatformSelector.parse(testOn);
+    this[timeout$0] = (t0 = timeout, t0 == null ? C[0] || CT.C0 : t0);
+    this[_skip] = skip == null ? null : !dart.equals(skip, false);
+    this[_verboseTrace] = verboseTrace;
+    this[_chainStackTraces] = chainStackTraces;
+    this[_retry] = retry;
+    this[skipReason$] = typeof skip == 'string' ? skip : null;
+    this[onPlatform$] = metadata$.Metadata._parseOnPlatform(onPlatform);
+    this[tags$] = metadata$.Metadata._parseTags(tags);
+    this[forTag$] = C[2] || CT.C2;
+    if (skip != null && !(typeof skip == 'string') && !(typeof skip == 'boolean')) {
+      dart.throw(new core.ArgumentError.new("\"skip\" must be a String or a bool, was \"" + dart.str(skip) + "\"."));
+    }
+    if (retry != null) core.RangeError.checkNotNegative(retry, "retry");
+    this[_validateTags]();
+  }).prototype = metadata$.Metadata.prototype;
+  (metadata$.Metadata.deserialize = function(serialized) {
+    this[testOn$] = dart.dsend(serialized, '_get', ["testOn"]) == null ? platform_selector.PlatformSelector.all : new platform_selector.PlatformSelector.parse(core.String.as(dart.dsend(serialized, '_get', ["testOn"])));
+    this[timeout$0] = metadata$.Metadata._deserializeTimeout(dart.dsend(serialized, '_get', ["timeout"]));
+    this[_skip] = T.boolN().as(dart.dsend(serialized, '_get', ["skip"]));
+    this[skipReason$] = T.StringN().as(dart.dsend(serialized, '_get', ["skipReason"]));
+    this[_verboseTrace] = T.boolN().as(dart.dsend(serialized, '_get', ["verboseTrace"]));
+    this[_chainStackTraces] = T.boolN().as(dart.dsend(serialized, '_get', ["chainStackTraces"]));
+    this[_retry] = T.intN().as(dart.dsend(serialized, '_get', ["retry"]));
+    this[tags$] = T.LinkedHashSetOfString().from(core.Iterable.as(dart.dsend(serialized, '_get', ["tags"])));
+    this[onPlatform$] = (() => {
+      let t0 = new (T.LinkedMapOfPlatformSelector$Metadata()).new();
+      for (let pair of core.Iterable.as(dart.dsend(serialized, '_get', ["onPlatform"])))
+        t0[$_set](new platform_selector.PlatformSelector.parse(core.String.as(dart.dload(pair, 'first'))), new metadata$.Metadata.deserialize(dart.dload(pair, 'last')));
+      return t0;
+    })();
+    this[forTag$] = core.Map.as(dart.dsend(serialized, '_get', ["forTag"]))[$map](boolean_selector.BooleanSelector, metadata$.Metadata, dart.fn((key, nested) => new (T.MapEntryOfBooleanSelector$Metadata()).__(new impl.BooleanSelectorImpl.parse(core.String.as(key)), new metadata$.Metadata.deserialize(nested)), T.dynamicAnddynamicToMapEntryOfBooleanSelector$Metadata()));
+    this[languageVersionComment$] = T.StringN().as(dart.dsend(serialized, '_get', ["languageVersionComment"]));
+    ;
+  }).prototype = metadata$.Metadata.prototype;
+  dart.addTypeTests(metadata$.Metadata);
+  dart.addTypeCaches(metadata$.Metadata);
+  dart.setMethodSignature(metadata$.Metadata, () => ({
+    __proto__: dart.getMethods(metadata$.Metadata.__proto__),
+    [_validateTags]: dart.fnType(dart.void, []),
+    validatePlatformSelectors: dart.fnType(dart.void, [core.Set$(core.String)]),
+    merge: dart.fnType(metadata$.Metadata, [metadata$.Metadata]),
+    change: dart.fnType(metadata$.Metadata, [], {chainStackTraces: dart.nullable(core.bool), forTag: dart.nullable(core.Map$(boolean_selector.BooleanSelector, metadata$.Metadata)), languageVersionComment: dart.nullable(core.String), onPlatform: dart.nullable(core.Map$(platform_selector.PlatformSelector, metadata$.Metadata)), retry: dart.nullable(core.int), skip: dart.nullable(core.bool), skipReason: dart.nullable(core.String), tags: dart.nullable(core.Set$(core.String)), testOn: dart.nullable(platform_selector.PlatformSelector), timeout: dart.nullable(timeout$.Timeout), verboseTrace: dart.nullable(core.bool)}, {}),
+    forPlatform: dart.fnType(metadata$.Metadata, [suite_platform.SuitePlatform]),
+    serialize: dart.fnType(core.Map$(core.String, dart.dynamic), []),
+    [_serializeTimeout]: dart.fnType(dart.dynamic, [timeout$.Timeout])
+  }));
+  dart.setGetterSignature(metadata$.Metadata, () => ({
+    __proto__: dart.getGetters(metadata$.Metadata.__proto__),
+    skip: core.bool,
+    verboseTrace: core.bool,
+    chainStackTraces: core.bool,
+    retry: core.int
+  }));
+  dart.setLibraryUri(metadata$.Metadata, I[1]);
+  dart.setFieldSignature(metadata$.Metadata, () => ({
+    __proto__: dart.getFields(metadata$.Metadata.__proto__),
+    testOn: dart.finalFieldType(platform_selector.PlatformSelector),
+    timeout: dart.finalFieldType(timeout$.Timeout),
+    [_skip]: dart.finalFieldType(dart.nullable(core.bool)),
+    skipReason: dart.finalFieldType(dart.nullable(core.String)),
+    [_verboseTrace]: dart.finalFieldType(dart.nullable(core.bool)),
+    [_chainStackTraces]: dart.finalFieldType(dart.nullable(core.bool)),
+    tags: dart.finalFieldType(core.Set$(core.String)),
+    [_retry]: dart.finalFieldType(dart.nullable(core.int)),
+    onPlatform: dart.finalFieldType(core.Map$(platform_selector.PlatformSelector, metadata$.Metadata)),
+    forTag: dart.finalFieldType(core.Map$(boolean_selector.BooleanSelector, metadata$.Metadata)),
+    languageVersionComment: dart.finalFieldType(dart.nullable(core.String))
+  }));
+  dart.defineLazy(metadata$.Metadata, {
+    /*metadata$.Metadata.empty*/get empty() {
+      return new metadata$.Metadata.__();
+    }
+  }, false);
+  dart.trackLibraries("packages/test_api/src/backend/metadata.dart", {
+    "package:test_api/src/backend/metadata.dart": metadata$
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["metadata.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../E:/packages/test_api/src/backend/metadata.dart.lib.js"}');
+  // Exports:
+  return {
+    src__backend__metadata: metadata$
+  };
+}));
+
+//# sourceMappingURL=metadata.dart.lib.js.map

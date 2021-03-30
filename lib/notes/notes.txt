@@ -3,3 +3,18 @@ Styling classes created
     ProjectColors class added
     Style class added
     ProjectIcons added
+
+class 5:
+OOP
+    declare a class
+    declare a mixin class
+    extend with (extend a class and a mixin class)
+Type of variables 
+    static
+    final
+    private
+    protected
+    property
+Future, await, async
+
+

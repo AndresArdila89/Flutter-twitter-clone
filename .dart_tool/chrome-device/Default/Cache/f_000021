@@ -1,0 +1,423 @@
+define(['dart_sdk', 'packages/test_api/src/backend/suite.dart', 'packages/test_api/src/backend/state.dart', 'packages/test_api/src/backend/message.dart', 'packages/test_api/src/frontend/async_matcher.dart', 'packages/test_api/src/backend/suite_platform.dart', 'packages/test_api/src/backend/runtime.dart'], (function load__packages__flutter_test__src__test_compat_dart(dart_sdk, packages__test_api__src__backend__suite$46dart, packages__test_api__src__backend__state$46dart, packages__test_api__src__backend__message$46dart, packages__test_api__src__frontend__async_matcher$46dart, packages__test_api__src__backend__suite_platform$46dart, packages__test_api__src__backend__runtime$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const collection = dart_sdk.collection;
+  const async = dart_sdk.async;
+  const _internal = dart_sdk._internal;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const live_test = packages__test_api__src__backend__suite$46dart.src__backend__live_test;
+  const test$ = packages__test_api__src__backend__suite$46dart.src__backend__test;
+  const group$ = packages__test_api__src__backend__suite$46dart.src__backend__group;
+  const suite$ = packages__test_api__src__backend__suite$46dart.src__backend__suite;
+  const state$ = packages__test_api__src__backend__state$46dart.src__backend__state;
+  const message$ = packages__test_api__src__backend__message$46dart.src__backend__message;
+  const invoker = packages__test_api__src__frontend__async_matcher$46dart.src__backend__invoker;
+  const declarer$ = packages__test_api__src__frontend__async_matcher$46dart.src__backend__declarer;
+  const suite_platform = packages__test_api__src__backend__suite_platform$46dart.src__backend__suite_platform;
+  const runtime = packages__test_api__src__backend__runtime$46dart.src__backend__runtime;
+  var test_compat = Object.create(dart.library);
+  var $toString = dartx.toString;
+  var $isEmpty = dartx.isEmpty;
+  var $length = dartx.length;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $padLeft = dartx.padLeft;
+  var $modulo = dartx['%'];
+  var $add = dartx.add;
+  var $remove = dartx.remove;
+  var $times = dartx['*'];
+  var $split = dartx.split;
+  var $first = dartx.first;
+  var $skip = dartx.skip;
+  var $take = dartx.take;
+  var $last = dartx.last;
+  dart._checkModuleNullSafetyMode(true);
+  var T = {
+    JSArrayOfLiveTest: () => (T.JSArrayOfLiveTest = dart.constFn(_interceptors.JSArray$(live_test.LiveTest)))(),
+    JSArrayOfTest: () => (T.JSArrayOfTest = dart.constFn(_interceptors.JSArray$(test$.Test)))(),
+    StreamSubscriptionOfvoid: () => (T.StreamSubscriptionOfvoid = dart.constFn(async.StreamSubscription$(dart.void)))(),
+    LinkedHashSetOfStreamSubscriptionOfvoid: () => (T.LinkedHashSetOfStreamSubscriptionOfvoid = dart.constFn(collection.LinkedHashSet$(T.StreamSubscriptionOfvoid())))(),
+    StateTovoid: () => (T.StateTovoid = dart.constFn(dart.fnType(dart.void, [state$.State])))(),
+    AsyncErrorTovoid: () => (T.AsyncErrorTovoid = dart.constFn(dart.fnType(dart.void, [async.AsyncError])))(),
+    MessageTovoid: () => (T.MessageTovoid = dart.constFn(dart.fnType(dart.void, [message$.Message])))(),
+    FutureOfvoid: () => (T.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    DeclarerN: () => (T.DeclarerN = dart.constFn(dart.nullable(declarer$.Declarer)))(),
+    JSArrayOfGroup: () => (T.JSArrayOfGroup = dart.constFn(_interceptors.JSArray$(group$.Group)))(),
+    VoidToFutureOfvoid: () => (T.VoidToFutureOfvoid = dart.constFn(dart.fnType(T.FutureOfvoid(), [])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const(new _internal.Symbol.new('test.declarer'));
+    }
+  }, false);
+  var C = [void 0];
+  var I = [
+    "file:///C:/flutter/packages/flutter_test/lib/src/test_compat.dart",
+    "package:flutter_test/src/test_compat.dart"
+  ];
+  var _stopwatch = dart.privateName(test_compat, "_stopwatch");
+  var _lastProgressPassed = dart.privateName(test_compat, "_lastProgressPassed");
+  var _lastProgressSkipped = dart.privateName(test_compat, "_lastProgressSkipped");
+  var _lastProgressFailed = dart.privateName(test_compat, "_lastProgressFailed");
+  var _lastProgressMessage = dart.privateName(test_compat, "_lastProgressMessage");
+  var _lastProgressSuffix = dart.privateName(test_compat, "_lastProgressSuffix");
+  var _subscriptions = dart.privateName(test_compat, "_subscriptions");
+  var _printPath = dart.privateName(test_compat, "_printPath");
+  var _green = dart.privateName(test_compat, "_green");
+  var _red = dart.privateName(test_compat, "_red");
+  var _yellow = dart.privateName(test_compat, "_yellow");
+  var _bold = dart.privateName(test_compat, "_bold");
+  var _noColor = dart.privateName(test_compat, "_noColor");
+  var _description = dart.privateName(test_compat, "_description");
+  var _progressLine = dart.privateName(test_compat, "_progressLine");
+  var _onStateChange = dart.privateName(test_compat, "_onStateChange");
+  var _onError = dart.privateName(test_compat, "_onError");
+  var _onTestStarted = dart.privateName(test_compat, "_onTestStarted");
+  var _onDone = dart.privateName(test_compat, "_onDone");
+  var _timeString = dart.privateName(test_compat, "_timeString");
+  test_compat._Reporter = class _Reporter extends core.Object {
+    [_onTestStarted](liveTest) {
+      if (liveTest == null) dart.nullFailed(I[0], 326, 32, "liveTest");
+      if (!dart.test(this[_stopwatch].isRunning)) {
+        this[_stopwatch].start();
+      }
+      this[_progressLine](this[_description](liveTest));
+      this[_subscriptions].add(liveTest.onStateChange.listen(dart.fn(state => {
+        if (state == null) dart.nullFailed(I[0], 331, 61, "state");
+        return this[_onStateChange](liveTest, state);
+      }, T.StateTovoid())));
+      this[_subscriptions].add(liveTest.onError.listen(dart.fn(error => {
+        if (error == null) dart.nullFailed(I[0], 332, 60, "error");
+        return this[_onError](liveTest, error.error, error.stackTrace);
+      }, T.AsyncErrorTovoid())));
+      this[_subscriptions].add(liveTest.onMessage.listen(dart.fn(message => {
+        if (message == null) dart.nullFailed(I[0], 333, 59, "message");
+        this[_progressLine](this[_description](liveTest));
+        let text = message.text;
+        if (dart.equals(message.type, message$.MessageType.skip)) {
+          text = "  " + dart.str(this[_yellow]) + dart.str(text) + dart.str(this[_noColor]);
+        }
+        core.print(text);
+      }, T.MessageTovoid())));
+    }
+    [_onStateChange](liveTest, state) {
+      if (liveTest == null) dart.nullFailed(I[0], 344, 32, "liveTest");
+      if (state == null) dart.nullFailed(I[0], 344, 48, "state");
+      if (!dart.equals(state.status, state$.Status.complete)) {
+        return;
+      }
+    }
+    [_onError](liveTest, error, stackTrace) {
+      if (liveTest == null) dart.nullFailed(I[0], 351, 26, "liveTest");
+      if (error == null) dart.nullFailed(I[0], 351, 43, "error");
+      if (stackTrace == null) dart.nullFailed(I[0], 351, 61, "stackTrace");
+      if (!dart.equals(liveTest.state.status, state$.Status.complete)) {
+        return;
+      }
+      this[_progressLine](this[_description](liveTest), {suffix: " " + dart.str(this[_bold]) + dart.str(this[_red]) + "[E]" + dart.str(this[_noColor])});
+      core.print(test_compat._indent(dart.toString(error)));
+      core.print(test_compat._indent(dart.str(stackTrace)));
+    }
+    [_onDone]() {
+      let success = this.failed[$isEmpty];
+      if (!dart.test(success)) {
+        this[_progressLine]("Some tests failed.", {color: this[_red]});
+      } else if (dart.test(this.passed[$isEmpty])) {
+        this[_progressLine]("All tests skipped.");
+      } else {
+        this[_progressLine]("All tests passed!");
+      }
+    }
+    [_progressLine](message, opts) {
+      if (message == null) dart.nullFailed(I[0], 377, 29, "message");
+      let color = opts && 'color' in opts ? opts.color : null;
+      let suffix = opts && 'suffix' in opts ? opts.suffix : null;
+      if (this.passed[$length] == this[_lastProgressPassed] && this.skipped[$length] == this[_lastProgressSkipped] && this.failed[$length] == this[_lastProgressFailed] && message == this[_lastProgressMessage] && (suffix == null || suffix == this[_lastProgressSuffix])) {
+        return;
+      }
+      this[_lastProgressPassed] = this.passed[$length];
+      this[_lastProgressSkipped] = this.skipped[$length];
+      this[_lastProgressFailed] = this.failed[$length];
+      this[_lastProgressMessage] = message;
+      this[_lastProgressSuffix] = suffix;
+      if (suffix != null) {
+        message = dart.notNull(message) + dart.notNull(suffix);
+      }
+      color == null ? color = "" : null;
+      let duration = this[_stopwatch].elapsed;
+      let buffer = new core.StringBuffer.new();
+      buffer.write(dart.str(this[_timeString](duration)) + " ");
+      buffer.write(this[_green]);
+      buffer.write("+");
+      buffer.write(this.passed[$length]);
+      buffer.write(this[_noColor]);
+      if (dart.test(this.skipped[$isNotEmpty])) {
+        buffer.write(this[_yellow]);
+        buffer.write(" ~");
+        buffer.write(this.skipped[$length]);
+        buffer.write(this[_noColor]);
+      }
+      if (dart.test(this.failed[$isNotEmpty])) {
+        buffer.write(this[_red]);
+        buffer.write(" -");
+        buffer.write(this.failed[$length]);
+        buffer.write(this[_noColor]);
+      }
+      buffer.write(": ");
+      buffer.write(color);
+      buffer.write(message);
+      buffer.write(this[_noColor]);
+      core.print(buffer.toString());
+    }
+    [_timeString](duration) {
+      if (duration == null) dart.nullFailed(I[0], 430, 31, "duration");
+      let minutes = dart.toString(duration.inMinutes)[$padLeft](2, "0");
+      let seconds = duration.inSeconds[$modulo](60)[$toString]()[$padLeft](2, "0");
+      return minutes + ":" + seconds;
+    }
+    [_description](liveTest) {
+      if (liveTest == null) dart.nullFailed(I[0], 440, 32, "liveTest");
+      let name = liveTest.test.name;
+      if (dart.test(this[_printPath]) && liveTest.suite.path != null) {
+        name = dart.str(liveTest.suite.path) + ": " + dart.str(name);
+      }
+      return name;
+    }
+  };
+  (test_compat._Reporter.new = function(opts) {
+    let color = opts && 'color' in opts ? opts.color : true;
+    if (color == null) dart.nullFailed(I[0], 266, 19, "color");
+    let printPath = opts && 'printPath' in opts ? opts.printPath : true;
+    if (printPath == null) dart.nullFailed(I[0], 266, 38, "printPath");
+    this.passed = T.JSArrayOfLiveTest().of([]);
+    this.failed = T.JSArrayOfLiveTest().of([]);
+    this.skipped = T.JSArrayOfTest().of([]);
+    this[_stopwatch] = new core.Stopwatch.new();
+    this[_lastProgressPassed] = null;
+    this[_lastProgressSkipped] = null;
+    this[_lastProgressFailed] = null;
+    this[_lastProgressMessage] = null;
+    this[_lastProgressSuffix] = null;
+    this[_subscriptions] = T.LinkedHashSetOfStreamSubscriptionOfvoid().new();
+    this[_printPath] = printPath;
+    this[_green] = dart.test(color) ? "[32m" : "";
+    this[_red] = dart.test(color) ? "[31m" : "";
+    this[_yellow] = dart.test(color) ? "[33m" : "";
+    this[_bold] = dart.test(color) ? "[1m" : "";
+    this[_noColor] = dart.test(color) ? "[0m" : "";
+    ;
+  }).prototype = test_compat._Reporter.prototype;
+  dart.addTypeTests(test_compat._Reporter);
+  dart.addTypeCaches(test_compat._Reporter);
+  dart.setMethodSignature(test_compat._Reporter, () => ({
+    __proto__: dart.getMethods(test_compat._Reporter.__proto__),
+    [_onTestStarted]: dart.fnType(dart.void, [live_test.LiveTest]),
+    [_onStateChange]: dart.fnType(dart.void, [live_test.LiveTest, state$.State]),
+    [_onError]: dart.fnType(dart.void, [live_test.LiveTest, core.Object, core.StackTrace]),
+    [_onDone]: dart.fnType(dart.void, []),
+    [_progressLine]: dart.fnType(dart.void, [core.String], {color: dart.nullable(core.String), suffix: dart.nullable(core.String)}, {}),
+    [_timeString]: dart.fnType(core.String, [core.Duration]),
+    [_description]: dart.fnType(core.String, [live_test.LiveTest])
+  }));
+  dart.setLibraryUri(test_compat._Reporter, I[1]);
+  dart.setFieldSignature(test_compat._Reporter, () => ({
+    __proto__: dart.getFields(test_compat._Reporter.__proto__),
+    passed: dart.finalFieldType(core.List$(live_test.LiveTest)),
+    failed: dart.finalFieldType(core.List$(live_test.LiveTest)),
+    skipped: dart.finalFieldType(core.List$(test$.Test)),
+    [_green]: dart.finalFieldType(core.String),
+    [_red]: dart.finalFieldType(core.String),
+    [_yellow]: dart.finalFieldType(core.String),
+    [_bold]: dart.finalFieldType(core.String),
+    [_noColor]: dart.finalFieldType(core.String),
+    [_printPath]: dart.finalFieldType(core.bool),
+    [_stopwatch]: dart.finalFieldType(core.Stopwatch),
+    [_lastProgressPassed]: dart.fieldType(dart.nullable(core.int)),
+    [_lastProgressSkipped]: dart.fieldType(dart.nullable(core.int)),
+    [_lastProgressFailed]: dart.fieldType(dart.nullable(core.int)),
+    [_lastProgressMessage]: dart.fieldType(dart.nullable(core.String)),
+    [_lastProgressSuffix]: dart.fieldType(dart.nullable(core.String)),
+    [_subscriptions]: dart.finalFieldType(core.Set$(async.StreamSubscription$(dart.void)))
+  }));
+  test_compat._runGroup = function _runGroup(suiteConfig, group, parents, reporter) {
+    if (suiteConfig == null) dart.nullFailed(I[0], 49, 30, "suiteConfig");
+    if (group == null) dart.nullFailed(I[0], 49, 49, "group");
+    if (parents == null) dart.nullFailed(I[0], 49, 68, "parents");
+    if (reporter == null) dart.nullFailed(I[0], 49, 87, "reporter");
+    return async.async(dart.void, function* _runGroup() {
+      parents[$add](group);
+      try {
+        let skipGroup = group.metadata.skip;
+        let setUpAllSucceeded = true;
+        if (!dart.test(skipGroup) && group.setUpAll != null) {
+          let liveTest = dart.nullCheck(group.setUpAll).load(suiteConfig, {groups: parents});
+          yield test_compat._runLiveTest(suiteConfig, liveTest, reporter, {countSuccess: false});
+          setUpAllSucceeded = liveTest.state.result.isPassing;
+        }
+        if (dart.test(setUpAllSucceeded)) {
+          for (let entry of group.entries) {
+            if (group$.Group.is(entry)) {
+              yield test_compat._runGroup(suiteConfig, entry, parents, reporter);
+            } else if (dart.test(entry.metadata.skip)) {
+              yield test_compat._runSkippedTest(suiteConfig, test$.Test.as(entry), parents, reporter);
+            } else {
+              let test = test$.Test.as(entry);
+              yield test_compat._runLiveTest(suiteConfig, test.load(suiteConfig, {groups: parents}), reporter);
+            }
+          }
+        }
+        if (!dart.test(skipGroup) && group.tearDownAll != null) {
+          let liveTest = dart.nullCheck(group.tearDownAll).load(suiteConfig, {groups: parents});
+          yield test_compat._runLiveTest(suiteConfig, liveTest, reporter, {countSuccess: false});
+        }
+      } finally {
+        parents[$remove](group);
+      }
+    });
+  };
+  test_compat._runLiveTest = function _runLiveTest(suiteConfig, liveTest, reporter, opts) {
+    if (suiteConfig == null) dart.nullFailed(I[0], 82, 33, "suiteConfig");
+    if (liveTest == null) dart.nullFailed(I[0], 82, 55, "liveTest");
+    if (reporter == null) dart.nullFailed(I[0], 82, 75, "reporter");
+    let countSuccess = opts && 'countSuccess' in opts ? opts.countSuccess : true;
+    if (countSuccess == null) dart.nullFailed(I[0], 82, 92, "countSuccess");
+    return async.async(dart.void, function* _runLiveTest() {
+      reporter[_onTestStarted](liveTest);
+      yield T.FutureOfvoid().microtask(dart.bind(liveTest, 'run'));
+      yield null;
+      let isSuccess = liveTest.state.result.isPassing;
+      if (dart.test(isSuccess)) {
+        reporter.passed[$add](liveTest);
+      } else {
+        reporter.failed[$add](liveTest);
+      }
+    });
+  };
+  test_compat._runSkippedTest = function _runSkippedTest(suiteConfig, test, parents, reporter) {
+    if (suiteConfig == null) dart.nullFailed(I[0], 98, 36, "suiteConfig");
+    if (test == null) dart.nullFailed(I[0], 98, 54, "test");
+    if (parents == null) dart.nullFailed(I[0], 98, 72, "parents");
+    if (reporter == null) dart.nullFailed(I[0], 98, 91, "reporter");
+    return async.async(dart.void, function* _runSkippedTest() {
+      let skipped = new invoker.LocalTest.new(test.name, test.metadata, dart.fn(() => {
+      }, T.VoidToNull()), {trace: test.trace});
+      if (skipped.metadata.skipReason != null) {
+        core.print("Skip: " + dart.str(skipped.metadata.skipReason));
+      }
+      let liveTest = skipped.load(suiteConfig);
+      reporter[_onTestStarted](liveTest);
+      reporter.skipped[$add](skipped);
+    });
+  };
+  test_compat.test = function test(description, body, opts) {
+    if (description == null) dart.nullFailed(I[0], 159, 10, "description");
+    if (body == null) dart.nullFailed(I[0], 160, 22, "body");
+    let testOn = opts && 'testOn' in opts ? opts.testOn : null;
+    let timeout = opts && 'timeout' in opts ? opts.timeout : null;
+    let skip = opts && 'skip' in opts ? opts.skip : null;
+    let tags = opts && 'tags' in opts ? opts.tags : null;
+    let onPlatform = opts && 'onPlatform' in opts ? opts.onPlatform : null;
+    let retry = opts && 'retry' in opts ? opts.retry : null;
+    test_compat._declarer.test(dart.toString(description), body, {testOn: testOn, timeout: timeout, skip: skip, onPlatform: onPlatform, tags: tags, retry: retry});
+  };
+  test_compat.group = function group(description, body, opts) {
+    if (description == null) dart.nullFailed(I[0], 190, 19, "description");
+    if (body == null) dart.nullFailed(I[0], 190, 48, "body");
+    let skip = opts && 'skip' in opts ? opts.skip : null;
+    test_compat._declarer.group(dart.toString(description), body, {skip: skip});
+  };
+  test_compat.setUp = function setUp(body) {
+    if (body == null) dart.nullFailed(I[0], 205, 31, "body");
+    test_compat._declarer.setUp(body);
+  };
+  test_compat.tearDown = function tearDown(body) {
+    if (body == null) dart.nullFailed(I[0], 222, 34, "body");
+    test_compat._declarer.tearDown(body);
+  };
+  test_compat.setUpAll = function setUpAll(body) {
+    if (body == null) dart.nullFailed(I[0], 239, 34, "body");
+    test_compat._declarer.setUpAll(body);
+  };
+  test_compat.tearDownAll = function tearDownAll(body) {
+    if (body == null) dart.nullFailed(I[0], 254, 37, "body");
+    test_compat._declarer.tearDownAll(body);
+  };
+  test_compat._indent = function _indent(string, opts) {
+    if (string == null) dart.nullFailed(I[0], 449, 23, "string");
+    let size = opts && 'size' in opts ? opts.size : null;
+    let first = opts && 'first' in opts ? opts.first : null;
+    size == null ? size = first == null ? 2 : first.length : null;
+    return test_compat._prefixLines(string, " "[$times](size), {first: first});
+  };
+  test_compat._prefixLines = function _prefixLines(text, prefix, opts) {
+    if (text == null) dart.nullFailed(I[0], 454, 28, "text");
+    if (prefix == null) dart.nullFailed(I[0], 454, 41, "prefix");
+    let first = opts && 'first' in opts ? opts.first : null;
+    let last = opts && 'last' in opts ? opts.last : null;
+    let single = opts && 'single' in opts ? opts.single : null;
+    first == null ? first = prefix : null;
+    last == null ? last = prefix : null;
+    single == null ? single = first : null;
+    let lines = text[$split]("\n");
+    if (lines[$length] === 1) {
+      return dart.str(single) + dart.str(text);
+    }
+    let buffer = new core.StringBuffer.new(dart.str(first) + dart.str(lines[$first]) + "\n");
+    for (let line of lines[$skip](1)[$take](dart.notNull(lines[$length]) - 2)) {
+      buffer.writeln(dart.str(prefix) + dart.str(line));
+    }
+    buffer.write(dart.str(last) + dart.str(lines[$last]));
+    return buffer.toString();
+  };
+  dart.copyProperties(test_compat, {
+    get _declarer() {
+      let declarer = T.DeclarerN().as(async.Zone.current._get(C[0] || CT.C0));
+      if (declarer != null) {
+        return declarer;
+      }
+      if (test_compat._localDeclarer == null) {
+        test_compat._localDeclarer = new declarer$.Declarer.new();
+        T.FutureOfvoid().new(dart.fn(() => {
+          invoker.Invoker.guard(T.FutureOfvoid(), dart.fn(() => async.async(dart.void, function*() {
+            let reporter = new test_compat._Reporter.new({color: false});
+            let group = test_compat._declarer.build();
+            let suite = new suite$.Suite.new(group, new suite_platform.SuitePlatform.new(runtime.Runtime.vm));
+            yield test_compat._runGroup(suite, group, T.JSArrayOfGroup().of([]), reporter);
+            reporter[_onDone]();
+          }), T.VoidToFutureOfvoid()));
+        }, T.VoidToNull()));
+      }
+      return dart.nullCheck(test_compat._localDeclarer);
+    }
+  });
+  dart.defineLazy(test_compat, {
+    /*test_compat._localDeclarer*/get _localDeclarer() {
+      return null;
+    },
+    set _localDeclarer(_) {}
+  }, false);
+  dart.trackLibraries("packages/flutter_test/src/test_compat.dart", {
+    "package:flutter_test/src/test_compat.dart": test_compat
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["test_compat.dart"],"names":[],"mappings":"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","file":"../../../../../../E:/packages/flutter_test/src/test_compat.dart.lib.js"}');
+  // Exports:
+  return {
+    src__test_compat: test_compat
+  };
+}));
+
+//# sourceMappingURL=test_compat.dart.lib.js.map
